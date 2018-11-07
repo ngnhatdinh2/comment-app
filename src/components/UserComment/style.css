@@ -1,0 +1,40 @@
+.UserComment{
+	position: relative;
+	width: 60%;
+	border-bottom: 1px solid black;
+	margin: 10px;
+	padding: 20px; 
+	margin-bottom: 30px;
+}
+.UserComment img{
+	width: 60px;
+	height: 60px;
+	border-radius: 20px;
+	background: lightgrey;
+	margin-right: 10px;
+}
+.identifier{
+	display: flex;
+	margin-bottom: 10px;
+}
+
+.input > textarea{
+	width: calc(100% - 52px);
+    margin-left: 10px;
+    display: block;
+    resize: none;
+    border-radius: 3px;
+    border: 1px solid #e8e5e5;
+    height: 75px;
+    font-size: 16px;
+    padding: 6px;
+    /*outline: none;*/
+}
+
+.input > input{
+	text-align: center;
+	font-size: 1.5em;
+	padding: 5px;
+	margin-top: 10px; 
+
+}

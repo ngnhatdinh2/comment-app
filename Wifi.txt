@@ -1,0 +1,1 @@
+http://10.126.0.1:8002/index.php?zone=portal_all&redirurl=http%3A%2F%2Fwww.msftconnecttest.com%2Fredirects
