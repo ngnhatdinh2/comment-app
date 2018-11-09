@@ -1,0 +1,75 @@
+*{
+	box-sizing: border-box;
+}
+#signin{
+	display: flex;
+	flex-direction: row;
+	color: #ccc;
+}
+#left{
+	flex: 4;
+	background-color: #120307;
+	/*color:  #ccc;*/
+}
+#right{
+	flex: 6;
+	background-color: red;
+}
+.signin-content{
+	display: flex;
+	height: 100vh;
+	flex-direction: column;
+	align-items:center;
+	justify-content: center;
+}
+.signin-content img{
+	margin-bottom: 1rem;
+	height: 100px;
+	width: 200px;
+}
+#signin-form{
+	width: 70%;
+	margin-bottom: 0.8rem;
+}
+.signin-content label{
+	display: block;
+	margin: 0;
+	margin-bottom: 0.2rem;
+	font-size: 1.5rem;
+}
+.signin-content input{
+	color: #ccc;
+	width: 100%;
+	margin: 0 0 0.8rem 0;
+	padding: 0.7rem;
+	font-size: 1.2rem;
+	background-color: #120307;
+	outline-style: none;
+	border: 1px solid #fff;
+	border-radius: 5px;
+}
+.signin-content .primary-btn{
+	margin-top: 0.3rem;
+}
+.primary-btn{
+	padding: 0.7rem;
+	font-size: 1.3rem;
+	border-radius: 5px;
+	border: none;
+	outline-style: none;
+	background-color: orange;
+	width: 100%;
+	cursor: pointer;
+	font-weight: 500;
+}
+.secondary-btn{
+	padding: 0.7rem;
+	font-size: 1.3rem;
+	border-radius: 5px;
+	border: none;
+	outline-style: none;
+	background-color: orange;
+	width: 100%;
+	cursor: pointer;
+	font-weight: 500;	
+}
