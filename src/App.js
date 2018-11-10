@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CommentsContainer from './components/CommentsContainer/CommentsContainer';
 import SignIn from './components/SignIn/SignIn';
+import './App.css';
 class App extends Component {
 	constructor(){
 		super();
