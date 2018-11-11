@@ -1,45 +1,46 @@
 *{
 	box-sizing: border-box;
 }
-#signin{
+#signup{
 	display: flex;
-	flex-direction: row;
 	justify-content: center;
 	color: #ccc;
 	background-image: url('http://eskipaper.com/images/cool-nebula-wallpaper-1.jpg');
 }
 #font{
+	flex: 0.3;
 	height: 100vh;
 	/*background-color: #120307;*/
-/*	background-image:
-	linear-gradient(to bottom,#120307,#120407);*/
+	background-image:
+	linear-gradient(to bottom,#120307,#120407);
 	transition: all 0.5s;
+	padding: 0.5rem;
 }
-.signin-content{
+.signup-content{
 	height: 80%;
 	display: flex;
 	flex-direction: column;
 	align-items:center;
 	justify-content: center;
 }
-.signin-content img{
+.signup-content img{
 	padding: 0;
 	background-color: #ccc;
 	margin-bottom: 1rem;
 	height: 100px;
 	width: 200px;
 }
-#signin-form{
+#signup-form{
 	width: 70%;
 	margin-bottom: 0.8rem;
 }
-.signin-content label{
+.signup-content label{
 	display: block;
 	margin: 0;
 	margin-bottom: 0.2rem;
 	font-size: 1.5rem;
 }
-.signin-content input{
+.signup-content input{
 	color: #ccc;
 	width: 100%;
 	margin: 0 0 0.8rem 0;
@@ -51,7 +52,7 @@
 	border: 1px solid #fff;
 	border-radius: 5px;
 }
-.signin-content .primary-btn{
+.signup-content .primary-btn{
 	margin-top: 0.3rem;
 }
 .primary-btn{
@@ -75,7 +76,7 @@ a{
 a:hover {
 	color: orange;
 }
-.signin-form .OR hr{
+.signup-form .OR hr{
 	flex: auto;
     border: none;
     height: 1px;
@@ -100,13 +101,13 @@ a:hover {
 	border: 1px solid orange;
 	color: orange;
 }
-#signin-footer{
+#signup-footer{
 	height: 20%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 }
-#signin-footer a{
+#signup-footer a{
 	color: orange;
 }

@@ -10,15 +10,15 @@ class SignIn extends Component {
 	render(){
 		return(
 			<div id="signin">
-				<div id="left">
+				<div id="font">
 					<div className="signin-content">
-						<img src="https://ustvstaticcdn1-a.akamaihd.net//v6/images/static/brand-guidelines/ustream-logo-white.png?201205251501" alt="logo" />
+						<img src="http://robobrain.me/images/logo.svg" alt="logo" />
 						<form id="signin-form">
 							<div>
 								<label>Username </label>
 								<input type="text" name="username"/>
-							</div>
 							<div>
+							</div>
 								<label>Password </label>
 								<input type="password" />
 							</div>
@@ -27,16 +27,13 @@ class SignIn extends Component {
 						<a href="#">Forgot Password</a>
 						<a href="#" className="secondary-btn">Create an account</a>
 
-						<footer id="signin-footer">
+					</div>
+					<footer id="signin-footer">
           					<p>Copyright &copy; 2018, Sluralpright All Rights Reserved</p>
           					<div>
-				            	<a href="#">terms of use</a> | <a href="#">Privacy Policy</a>
+				            	<a href="#">Terms of use</a> | <a href="#">Privacy Policy</a>
 				         	</div>
-			        	</footer>
-					</div>
-				</div>
-				<div id="right">
-					<p>ditMe</p>
+			        </footer>
 				</div>
 			</div>
 		)
