@@ -1,0 +1,860 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"b",
+				"background\tproperty"
+			],
+			[
+				"bac",
+				"background-image\tproperty"
+			],
+			[
+				"co",
+				"color\tproperty"
+			],
+			[
+				"clo",
+				"color\tproperty"
+			],
+			[
+				"align",
+				"align-items\tproperty"
+			],
+			[
+				"margin",
+				"margin-top\tproperty"
+			],
+			[
+				"txt",
+				"text-align\tproperty"
+			],
+			[
+				"flex",
+				"flex-direction\tproperty"
+			],
+			[
+				"clas",
+				"className"
+			],
+			[
+				"lvoe",
+				"loveIcon"
+			],
+			[
+				"marin",
+				"margin-bottom\tproperty"
+			],
+			[
+				"avt",
+				"avtSrc"
+			],
+			[
+				"te",
+				"text"
+			],
+			[
+				"bor",
+				"border-radius\tproperty"
+			],
+			[
+				"out",
+				"outline-style\tproperty"
+			],
+			[
+				"key",
+				"keyCode"
+			],
+			[
+				"po",
+				"postId"
+			],
+			[
+				"han",
+				"handleLike"
+			],
+			[
+				"hanlde",
+				"handleLike"
+			],
+			[
+				"com",
+				"comment"
+			],
+			[
+				"Co",
+				"CommentDisplayer"
+			],
+			[
+				"handl",
+				"handleLike"
+			],
+			[
+				"rend",
+				"renderComment"
+			],
+			[
+				"h",
+				"handleInputChange"
+			],
+			[
+				"ha",
+				"handleEnter"
+			],
+			[
+				"pos",
+				"postID"
+			],
+			[
+				"is",
+				"isLiked"
+			],
+			[
+				"c",
+				"commentContent"
+			],
+			[
+				"comm",
+				"commentContent"
+			],
+			[
+				"cu",
+				"currentComments"
+			],
+			[
+				"Com",
+				"CommentsContainer"
+			],
+			[
+				"sa",
+				"span"
+			],
+			[
+				"par",
+				"params"
+			],
+			[
+				"mar",
+				"margin-bottom\tproperty"
+			],
+			[
+				"magin",
+				"margin-top\tproperty"
+			],
+			[
+				"al",
+				"align-content\tproperty"
+			],
+			[
+				"fel",
+				"flex-direction\tproperty"
+			],
+			[
+				"border-bott",
+				"border-bottom-width\tproperty"
+			],
+			[
+				"fle",
+				"flex-end\tjustify-content"
+			],
+			[
+				"tra",
+				"transition\tproperty"
+			],
+			[
+				"back",
+				"background-color\tproperty"
+			],
+			[
+				"sha",
+				"box-shadow\tproperty"
+			],
+			[
+				"pa",
+				"padding\tproperty"
+			],
+			[
+				"backgri",
+				"background-position\tproperty"
+			],
+			[
+				"Na",
+				"Navigator-Item"
+			],
+			[
+				"dis",
+				"display\tproperty"
+			],
+			[
+				"he",
+				"headerIcon"
+			],
+			[
+				"wid",
+				"width\tproperty"
+			],
+			[
+				"ser",
+				"searchIcon"
+			],
+			[
+				"wor",
+				"word-wrap\tproperty"
+			],
+			[
+				"over",
+				"overflow\tproperty"
+			],
+			[
+				"tr",
+				"transition\tproperty"
+			],
+			[
+				"on",
+				"onMouse"
+			],
+			[
+				"peo",
+				"people-container"
+			],
+			[
+				"di",
+				"display\tproperty"
+			],
+			[
+				"ov",
+				"overflow\tproperty"
+			],
+			[
+				"background-c",
+				"background-color\tproperty"
+			],
+			[
+				"backg",
+				"background-attachment\tproperty"
+			],
+			[
+				"max",
+				"max-width\tproperty"
+			],
+			[
+				"E",
+				"EmployeeListTemp"
+			],
+			[
+				"Em",
+				"Employees"
+			],
+			[
+				"fil",
+				"filtedEmployees"
+			],
+			[
+				"se",
+				"searchValue"
+			],
+			[
+				"border-r",
+				"border-radius\tproperty"
+			],
+			[
+				"len",
+				"length"
+			],
+			[
+				"set",
+				"setState"
+			],
+			[
+				"handle",
+				"handleEqual"
+			],
+			[
+				"only",
+				"onlyStocked"
+			],
+			[
+				"so",
+				"stocked"
+			],
+			[
+				"pro",
+				"product"
+			],
+			[
+				"st",
+				"stocked"
+			],
+			[
+				"P",
+				"ProductTable"
+			],
+			[
+				"Pro",
+				"ProductRow"
+			],
+			[
+				"ca",
+				"category"
+			],
+			[
+				"to",
+				"toFahrenheit"
+			],
+			[
+				"s",
+				"state\tReact: this.state"
+			],
+			[
+				"algin",
+				"align-items\tproperty"
+			],
+			[
+				"inde",
+				"indexList"
+			],
+			[
+				"get",
+				"getAttribute"
+			],
+			[
+				"list",
+				"listArr"
+			],
+			[
+				"lsit",
+				"listArr"
+			],
+			[
+				"bo",
+				"border\tproperty"
+			],
+			[
+				"d",
+				"display\tproperty"
+			],
+			[
+				"reso",
+				"resolve"
+			],
+			[
+				"time",
+				"timeout\tsetTimeout function"
+			],
+			[
+				"wi",
+				"width\tproperty"
+			],
+			[
+				"mvoe",
+				"moved"
+			],
+			[
+				"add",
+				"addHead"
+			],
+			[
+				"data",
+				"data-y"
+			],
+			[
+				"transi",
+				"transition\tproperty"
+			],
+			[
+				"inlin",
+				"inline-block\tdisplay"
+			],
+			[
+				"wra",
+				"flex-wrap\tproperty"
+			],
+			[
+				"game",
+				"gameArea"
+			],
+			[
+				"pad",
+				"padding\tproperty"
+			],
+			[
+				"cla",
+				"className"
+			],
+			[
+				"text-a",
+				"text-align\tproperty"
+			],
+			[
+				"card",
+				"card-content"
+			],
+			[
+				"f",
+				"flex-start\talign-content"
+			],
+			[
+				"min",
+				"min-width\tproperty"
+			],
+			[
+				"ima",
+				"imageUrl"
+			],
+			[
+				"im",
+				"imageUrl"
+			],
+			[
+				"image",
+				"imageUrl"
+			],
+			[
+				"imga",
+				"imageUrl"
+			],
+			[
+				"Re",
+				"Register"
+			],
+			[
+				"IM",
+				"ImageHolder"
+			],
+			[
+				"font-s",
+				"font-size\tproperty"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Users/ngnha/desktop/comment-app/src/components/SignIn/SignIn.js",
+			"settings":
+			{
+				"buffer_size": 1063,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/ngnha/desktop/comment-app/src/App.js",
+			"settings":
+			{
+				"buffer_size": 548,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/ngnha/desktop/comment-app/src/components/SignUp/SignUp.js",
+			"settings":
+			{
+				"buffer_size": 1234,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/ngnha/desktop/comment-app/src/components/SignUp/style.css",
+			"settings":
+			{
+				"buffer_size": 1947,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"conda",
+				"Conda: Create Environment"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Preferences: Package Control Settings – Default"
+			],
+			[
+				"pack",
+				"Package Control: List Packages"
+			],
+			[
+				"packe",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 206.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": false,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/ngnha/desktop/comment-app",
+		"/C/Users/ngnha/desktop/comment-app/public",
+		"/C/Users/ngnha/desktop/comment-app/src",
+		"/C/Users/ngnha/desktop/comment-app/src/components",
+		"/C/Users/ngnha/desktop/comment-app/src/components/SignIn",
+		"/C/Users/ngnha/desktop/comment-app/src/components/SignUp",
+		"/C/Users/ngnha/desktop/comment-app/src/components/Test"
+	],
+	"file_history":
+	[
+		"/C/Users/ngnha/desktop/comment-app/src/components/SignUp/current.sublime-project",
+		"/C/Users/ngnha/desktop/comment-app/src/components/SignUp/SignUp.js",
+		"/C/Users/ngnha/desktop/comment-app/src/App.css",
+		"/C/Users/ngnha/desktop/comment-app/src/components/SignIn/style.css",
+		"/C/Users/ngnha/desktop/comment-app/src/App.js",
+		"/C/Users/ngnha/Desktop/comment-app/.git/config",
+		"/C/Users/ngnha/desktop/comment-app/src/components/SignIn/SignIn.js",
+		"/C/Users/ngnha/desktop/comment-app/src/components/UserComment/UserComment.js",
+		"/C/Users/ngnha/desktop/comment-app/src/components/CommentDisplayer/CommentDisplayer.js",
+		"/C/Users/ngnha/desktop/comment-app/src/components/CommentDisplayer/style.css",
+		"/C/Users/ngnha/desktop/comment-app/src/components/Test/User.js",
+		"/C/Users/ngnha/desktop/comment-app/src/components/Test/Comment.js",
+		"/C/Users/ngnha/desktop/comment-app/src/components/UserComment/style.css",
+		"/C/Users/ngnha/desktop/comment-app/src/index.js",
+		"/C/Users/ngnha/desktop/comment-app/public/index.html",
+		"/C/Users/ngnha/desktop/comment-app/src/containers/SignUp",
+		"/C/Users/ngnha/desktop/helloworld/package.json",
+		"/C/Users/ngnha/desktop/helloworld/src/components/Navigator/Navigator.js",
+		"/C/Users/ngnha/desktop/helloworld/src/components/Navigator/Navigator.css",
+		"/C/Users/ngnha/desktop/helloworld/src/App.css",
+		"/C/Users/ngnha/desktop/helloworld/src/App.js",
+		"/C/Users/ngnha/desktop/helloworld/src/index.css",
+		"/C/Users/ngnha/desktop/helloworld/src/particlesjs-config.js",
+		"/C/Users/ngnha/Desktop/particlesjs-config (1).json",
+		"/C/Users/ngnha/Desktop/particlesjs-config.json",
+		"/C/Users/ngnha/desktop/helloworld/src/index.js",
+		"/C/Users/ngnha/desktop/helloworld/public/manifest.json",
+		"/C/Users/ngnha/desktop/practice/people-management/src/components/EmployeeList.js",
+		"/C/Users/ngnha/Desktop/practice/people-management/src/components/EmployeeList.js",
+		"/C/Users/ngnha/Desktop/Practice/scrath #1 - robofriend/src/App.js",
+		"/C/Users/ngnha/Desktop/Practice/scrath #1 - robofriend/src/RobotList.js",
+		"/C/Users/ngnha/desktop/practice/people-management/src/containers/people.css",
+		"/C/Users/ngnha/desktop/practice/people-management/src/components/People.css",
+		"/C/Users/ngnha/Desktop/Practice/todoList/src/App.js",
+		"/C/Users/ngnha/desktop/practice/people-management/src/index.js",
+		"/C/Users/ngnha/desktop/practice/people-management/src/App.js",
+		"/C/Users/ngnha/Desktop/Practice/caculator/src/App.js",
+		"/C/Users/ngnha/Desktop/practice/caculator/src/Button.js",
+		"/C/Users/ngnha/Desktop/practice/caculator/src/Screen.js",
+		"/C/Users/ngnha/Desktop/practice/caculator/src/OperatorButton",
+		"/C/Users/ngnha/AppData/Roaming/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
+		"/C/Users/ngnha/test",
+		"/C/Users/ngnha/Desktop/practice/todoo/src/Temperature.js",
+		"/C/Users/ngnha/Desktop/js-note",
+		"/C/Users/ngnha/desktop/practice/todoo/src/index.css",
+		"/C/Users/ngnha/Desktop/Practice/scrath #1 - robofriend/src/Card.js",
+		"/C/Users/ngnha/Desktop/Practice/New Pag/script.js",
+		"/C/Users/ngnha/desktop/new/src/NavigationBar.css",
+		"/C/Users/ngnha/newfile.js",
+		"/C/Users/ngnha/node/script.js",
+		"/C/Users/ngnha/desktop/new/src/test",
+		"/C/Users/ngnha/Desktop/Sample Project/src/index.js",
+		"/C/Users/ngnha/desktop/practice/hello-world/package.json",
+		"/C/Users/ngnha/Desktop/Practice/ngnhatdinh2.github.io/package.json",
+		"/C/Users/ngnha/desktop/practice/ngnhatdinh2.github.io/pakage.json",
+		"/C/Users/ngnha/desktop/practice/ngnhatdinh2.github.io/package.json",
+		"/C/Users/ngnha/Desktop/Practice/ngnhatdinh2.github.io/README.md",
+		"/C/Users/ngnha/desktop/practice/ngnhatdinh2.github.io/public/index.html",
+		"/C/Users/ngnha/Desktop/second/src/components/input/input.js",
+		"/C/Users/ngnha/Desktop/second/src/App.js",
+		"/C/Users/ngnha/Desktop/second/src/logo.css",
+		"/C/Users/ngnha/Desktop/second/src/navigation.js",
+		"/C/Users/ngnha/Desktop/second/src/input.css",
+		"/C/Users/ngnha/Desktop/second/src/signin.css",
+		"/C/Users/ngnha/Desktop/second/src/signin.js",
+		"/C/Users/ngnha/Desktop/second/src/input.js",
+		"/C/Users/ngnha/Desktop/second/src/register.js",
+		"/C/Users/ngnha/Desktop/second/src/index.css",
+		"/C/Users/ngnha/Desktop/second/src/imageholder.css",
+		"/C/Users/ngnha/Desktop/second/src/imageholder.js",
+		"/C/Users/ngnha/Desktop/second/src/register.css",
+		"/C/Users/ngnha/Desktop/second/src/logo.js",
+		"/C/Users/ngnha/Desktop/second/src/index.js",
+		"/C/Users/ngnha/Desktop/second/src/navigation"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"signin",
+			"font",
+			"signin",
+			";\n",
+			"postID"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"signup",
+			"postId"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/ngnha/desktop/comment-app/src/components/SignIn/SignIn.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1063,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								312,
+								312
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/ngnha/desktop/comment-app/src/App.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 548,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								497,
+								497
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 144.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/C/Users/ngnha/desktop/comment-app/src/components/SignUp/SignUp.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								149,
+								149
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/C/Users/ngnha/desktop/comment-app/src/components/SignUp/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1947,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								612,
+								612
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 216.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 35.0
+	},
+	"input":
+	{
+		"height": 74.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.exec":
+	{
+		"height": 174.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Conda/Conda.sublime-build",
+	"project": "current.sublime-project",
+	"replace":
+	{
+		"height": 120.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 190.0,
+	"status_bar_visible": false,
+	"template_settings":
+	{
+	}
+}

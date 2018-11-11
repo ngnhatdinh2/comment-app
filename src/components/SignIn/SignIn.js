@@ -10,15 +10,15 @@ class SignIn extends Component {
 	render(){
 		return(
 			<div id="signin">
-				<div id="left">
+				<div id="font">
 					<div className="signin-content">
-						<img src="https://www.designevo.com/res/templates/thumb_small/simple-black-and-white-font-style.png" alt="logo" />
+						<img src="http://robobrain.me/images/logo.svg" alt="logo" />
 						<form id="signin-form">
 							<div>
 								<label>Username </label>
 								<input type="text" name="username"/>
-							</div>
 							<div>
+							</div>
 								<label>Password </label>
 								<input type="password" />
 							</div>
@@ -34,9 +34,6 @@ class SignIn extends Component {
 				            	<a href="#">Terms of use</a> | <a href="#">Privacy Policy</a>
 				         	</div>
 			        </footer>
-				</div>
-				<div id="right">
-					<p>ditMe</p>
 				</div>
 			</div>
 		)
