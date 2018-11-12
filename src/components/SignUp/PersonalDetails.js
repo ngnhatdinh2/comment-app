@@ -19,7 +19,10 @@ const UserInfo = ({handleChange, nextStep, prevStep, values}) =>{
 	            required
 	          id="standard-required"
 	          label="Email"
+	          type="email"
+	          name="email"
 	          margin="normal"
+	          value={values.email}
 	          onChange={handleChange('email')}
           	/>
 	      	<TextField
@@ -35,13 +38,16 @@ const UserInfo = ({handleChange, nextStep, prevStep, values}) =>{
 	          id="standard-required"
 	          label="Password"
 	          value={values.password}
+	          type="password"
 	          margin="normal"
 	          onChange={handleChange('password')}
           	/>
+          	
           	<TextField
 	            required
 	          id="standard-required"
 	          label="Confirm Password"
+	          type="password"
 	          value={values.confirmPassword}
 	          margin="normal"
 	          onChange={handleChange('confirmPassword')}

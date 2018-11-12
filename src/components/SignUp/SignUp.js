@@ -18,7 +18,7 @@ class SignUp extends Component {
 	constructor(props){
 		super(props);
 		this.state={ 
-			step: 1,
+			step: 2,
 			email: '',
 			name: '',
 			country: '',
@@ -33,7 +33,7 @@ class SignUp extends Component {
 	}
 	addNewUser=()=>{
 		const { email, name, country, password, phone, creditCard, username } = this.state;
-		base.post(`users/${uuid1()}`, {
+		base.post(`users/${uuidv1()}`, {
 		    data: {
 			    	email,
 					name,
@@ -49,7 +49,7 @@ class SignUp extends Component {
 		      }
 		    }
   		});
-		const user={
+/*		const user={
 				email,
 				name,
 				country,
@@ -57,7 +57,7 @@ class SignUp extends Component {
 				phone,
 				creditCard,
 				username,
-		};
+		};*/
 	}
 	handleUserInfoSubmit=()=>{
 		const step = this.state.step;
@@ -161,6 +161,13 @@ class SignUp extends Component {
 		}
 		if( this.state.password !== this.state.confirmPassword ){
 			isFailed = 1;
+		}
+		if(this.state.email.includes('@') !== 1)
+		{
+			isFailed = 1;
+			this.setState({
+				email: ''
+			});
 		}
 		if(this.state.username.length < 4)
 		{
