@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
 import PersonalInfo from './PersonalInfo.js';
-import UserInfo from './PersonalDetails.js';
-import SuccessSignUp from './SuccessSignUp.js';
+import UserInfo from './UserInfo.js';
+import SuccessfulSignUp from './SuccessSignUp.js';
 import base from '../Base/Base';
 import uuidv1 from 'uuid/v1';
+import {BrowserRouter as Router, Redirect } from 'react-router-dom';	
 import './style.css';
 class SignUp extends Component {
 	componentWillMount(){
-		base.syncState('username', {
-    	context: this,
-    	state: 'username',
-  	});
-	}
-	componentWillUnmount(){
-		base.removeBinding(this.ref);
+		// base.syncState('users', {
+  //   	context: this,
+  //   	state: 'username',
+  // 	});
 	}
 	constructor(props){
 		super(props);
 		this.state={ 
-			step: 2,
+			step: 1,
 			email: '',
 			name: '',
 			country: '',
@@ -26,11 +24,14 @@ class SignUp extends Component {
 			phone: '',
 			creditCard: '',
 			confirmPassword: '',
-			username: '',
-			
+			username: 'unknown',
 			error: 0
 		};
 	}
+	componentWillUnmount(){
+		//base.removeBinding(this.ref);
+	}
+	// attemp to 
 	addNewUser=()=>{
 		const { email, name, country, password, phone, creditCard, username } = this.state;
 		base.post(`users/${uuidv1()}`, {
@@ -45,29 +46,20 @@ class SignUp extends Component {
 			},
 		    then(err){
 		      if(!err){
-		        console.log('Posted');
+		      	// Router to Smthing or Else Router to Smt
+		      	//Router.transitionTo('/contact');
 		      }
 		    }
   		});
-/*		const user={
-				email,
-				name,
-				country,
-				password,
-				phone,
-				creditCard,
-				username,
-		};*/
 	}
 	handleUserInfoSubmit=()=>{
-		const step = this.state.step;
 		if(!this.validateUserInfo()){
-			alert('Wrong Input Fomat');
+			alert('UserInfo Wrong Input Fomat');
 		}
 		else{
 			this.addNewUser();
 			this.setState({
-				step: step + 1
+				step: this.state.step + 1
 			});
 		}
 	}
@@ -162,13 +154,6 @@ class SignUp extends Component {
 		if( this.state.password !== this.state.confirmPassword ){
 			isFailed = 1;
 		}
-		if(this.state.email.includes('@') !== 1)
-		{
-			isFailed = 1;
-			this.setState({
-				email: ''
-			});
-		}
 		if(this.state.username.length < 4)
 		{
 			isFailed = 1;
@@ -185,9 +170,14 @@ class SignUp extends Component {
 		}
 		return 1;
 	}
+	signIn=(e)=>{
+		e.preventDefault();
+		this.props.signIn(this.state.username, this.state.password);
+	}
 	render(){	
 		let { step } = this.state;
-		// let user= this.state.user;
+		const { isSignedIn, signIn, refTo } = this.props;
+		if ( isSignedIn ) return(<Redirect to={refTo}/>)
 		switch(step){
 			case 1:
 				return(
@@ -196,7 +186,7 @@ class SignUp extends Component {
 						handleChange={this.handleChange}
 						values={this.state}
 					/>
-				)
+				);
 			break;
 			case 2:
 				return(
@@ -206,11 +196,14 @@ class SignUp extends Component {
 						handleChange={this.handleChange}
 						values={this.state}
 					/>
-				)
+				);
 			break;
 			case 3:
 				return(
-					<SuccessSignUp />
+					<SuccessfulSignUp
+						username={this.state.username}
+						signIn={this.signIn}
+					/>
 				)
 			break;
 			default:

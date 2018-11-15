@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -17,7 +17,7 @@ const UserInfo = ({handleChange, nextStep, prevStep, values}) =>{
 	      	</AppBar>
 	      	<TextField
 	            required
-	          id="standard-required"
+	          
 	          label="Email"
 	          type="email"
 	          name="email"
@@ -27,7 +27,7 @@ const UserInfo = ({handleChange, nextStep, prevStep, values}) =>{
           	/>
 	      	<TextField
 	            required
-	          id="standard-required"
+	          
 	          label="Username"
 	          margin="normal"
 	          onChange={handleChange('username')}
@@ -35,7 +35,7 @@ const UserInfo = ({handleChange, nextStep, prevStep, values}) =>{
           	{values.errors && <h1>password errors</h1>}
           	<TextField
 	            required
-	          id="standard-required"
+	          
 	          label="Password"
 	          value={values.password}
 	          type="password"
@@ -45,7 +45,7 @@ const UserInfo = ({handleChange, nextStep, prevStep, values}) =>{
           	
           	<TextField
 	            required
-	          id="standard-required"
+	          
 	          label="Confirm Password"
 	          type="password"
 	          value={values.confirmPassword}

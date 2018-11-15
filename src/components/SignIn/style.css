@@ -6,14 +6,22 @@
 	flex-direction: row;
 	justify-content: center;
 	color: #ccc;
-	background-image: url('http://eskipaper.com/images/cool-nebula-wallpaper-1.jpg');
+	/*background-image: url('http://eskipaper.com/images/cool-nebula-wallpaper-1.jpg');*/
 }
-#font{
+#left{
+	flex: 4;
 	height: 100vh;
-	/*background-color: #120307;*/
-/*	background-image:
-	linear-gradient(to bottom,#120307,#120407);*/
+	background-image: linear-gradient(to bottom,#485563,#29323c);
+	borde: none;
+	box-shadow: 0px 0px 10px 3px #485563; 
 	transition: all 0.5s;
+}
+#right{
+	flex: 6;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items:  center;
 }
 .signin-content{
 	height: 80%;

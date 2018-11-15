@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
+//import TextField from '@material-ui/core/TextField';
 
-const SuccessSignUp = ({handleChange, nextStep, values}) =>{
+const SuccessfulSignUp = ({ signIn, username}) =>{
 	return(
 		<div>
 			<AppBar position="static" color="default">
@@ -15,15 +15,15 @@ const SuccessSignUp = ({handleChange, nextStep, values}) =>{
 		          </Typography>
 		        </Toolbar>
 	      	</AppBar>
-	      	<h1>HelloWellcome to Hell </h1>
+	      	<h1>Wellcome to Hell </h1>
 
           	 <Button size="large" variant="outlined" 
           	 	color="primary" 
-          	 	onClick={nextStep}
+          	 	onClick={signIn}
           	 >
 		          Home Page
 	        </Button>
 		</div>
 	)
 }
-export default SuccessSignUp;
+export default SuccessfulSignUp;

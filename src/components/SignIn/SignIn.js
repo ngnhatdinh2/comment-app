@@ -1,32 +1,65 @@
 import React, { Component } from 'react';
+import { Route, Redirect } from 'react-router-dom';
 import './style.css';
 class SignIn extends Component {
 	constructor(props){
 		super(props);
 		this.state={
-			
+			username:'',
+			password: '',
 		};
 	}
+	signIn=(e)=>{
+		e.preventDefault();
+		const isSuccessful = this.props.signIn(this.state.username,this.state.password);
+		if(!isSuccessful){
+			alert('Wrong Password or Username');
+			this.setState({
+				username:'',
+				password: '',
+			});
+		}
+	}
+	handleChange = input => e =>{
+		const value = e.target.value;
+		this.setState({[input]: value});
+	}
 	render(){
+		const { isSignedIn, refTo } = this.props;
+		//let { from } = this.props.location.state || { from: { pathname: "/" } };
+		if(isSignedIn) return (<Redirect to={refTo} />);
 		return(
 			<div id="signin">
-				<div id="font">
+				<div id="left">
 					<div className="signin-content">
 						<img src="http://robobrain.me/images/logo.svg" alt="logo" />
 						<form id="signin-form">
 							<div>
 								<label>Username </label>
-								<input type="text" name="username"/>
+								<input 
+									type="text" 
+									name="username" 
+									value={this.state.username}
+									onChange={this.handleChange('username')}
+								/>
 							<div>
 							</div>
 								<label>Password </label>
-								<input type="password" />
+								<input 
+									type="password" 
+									value={this.state.password}
+									onChange={this.handleChange('password')} 
+								/>
 							</div>
-							<button type="submit" className="primary-btn">Sign In</button>
+							<button type="submit"
+								className="primary-btn" 
+								onClick={this.signIn}
+							>
+								Sign In
+							</button>
 						</form>
-						<a href="#">Forgot Password</a>
-						<a href="#" className="secondary-btn">Create an account</a>
-
+						<a href="/forgot-password">Forgot Password</a>
+						<a href="/signup" className="secondary-btn">Create an account</a>
 					</div>
 					<footer id="signin-footer">
           					<p>Copyright &copy; 2018, Sluralpright All Rights Reserved</p>
@@ -34,6 +67,11 @@ class SignIn extends Component {
 				            	<a href="#">Terms of use</a> | <a href="#">Privacy Policy</a>
 				         	</div>
 			        </footer>
+				</div>
+				<div id="right">
+					<h1>WalCum ta de Wurld</h1>
+					<a href="/docs">Docs</a>
+					<a href="/contact">Contact</a>
 				</div>
 			</div>
 		)
