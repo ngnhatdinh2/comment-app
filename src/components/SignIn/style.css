@@ -1,6 +1,4 @@
-*{
-	box-sizing: border-box;
-}
+
 #signin{
 	display: flex;
 	flex-direction: row;
@@ -22,6 +20,12 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items:  center;
+	background-image: url('http://www.cis.just.edu.jo/assets/cic/images/services-bg-5.jpg');
+	background-size: cover;
+	color: orange;
+}
+#right a{
+	color: orange;
 }
 .signin-content{
 	height: 80%;

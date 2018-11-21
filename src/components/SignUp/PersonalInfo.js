@@ -1,58 +1,52 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 
-const PersonalInfo = ({handleChange, nextStep, values}) =>{	
+
+const PersonalInfo = ({handleChange, nextStep, values, classes, children, className}) =>{	
 	return(
 		<div>
-			<AppBar position="static" color="default">
-		        <Toolbar>
-		          <Typography variant="h6" color="inherit">
-		            PersonalInfo
-		          </Typography>
-		        </Toolbar>
-	      	</AppBar>
-	      	<TextField
-	            required
-	          id="standard-required"
-	          label="Name"
-	          margin="normal"
-	          value={values.name}
-	          onChange={handleChange('name')}
-          	/>
-          	<TextField
-	            required
-	          id="standard-required"
-	          label="country"
-	          margin="normal"
-	          value={values.country}
-	          onChange={handleChange('country')}
-          	/>
-          	<TextField
-	            required
-	          id="standard-required"
-	          label="Phone"
-	          margin="normal"
-	          value={values.phone}
-	          onChange={handleChange('phone')}
-          	/>
-          	<TextField
-	          id="standard-required"
-	          label="Credit Card"
-	          margin="normal"
-	          value={values.creditCard}
-	          onChange={handleChange('creditCard')}
-          	/>
-          	 <Button size="large" variant="outlined" 
-          	 	color="primary" 
-          	 	onClick={nextStep}
-          	 >
-		          Next step
-	        </Button>
+		    <h2>PersonalInfo</h2>
+	      	<div className='signup-form'>
+		      	<div className="name">
+		      		<label htmlFor="Name">Name</label>
+			      	<input
+			          name="Name"
+			          value={values.name}
+			          onChange={handleChange('name')}
+		          	/>
+		         </div>
+		        <div className="country">
+		          	<label htmlFor="Country">Country</label>
+		          	<input
+			          name="Country"
+			          value={values.country}
+			          onChange={handleChange('country')} />
+			    </div>
+			    <div className="phone">
+			        <label htmlFor="Phone">Phone</label>
+		          	<input
+			          name="Phone"
+			          value={values.phone}
+			          onChange={handleChange('phone')}
+		          	/>
+		        </div>
+		        <div className="credit-card">
+		          	<label htmlFor="Credit-Card">Credit-Card</label>
+		          	<input
+			          margin="normal"
+			          name="Credit-Card"
+			          value={values.creditCard}
+			          onChange={handleChange('creditCard')}
+		          	/>
+		        </div>
+	          	 <button
+	          	 	color="primary" 
+	          	 	onClick={nextStep}
+	          	 >
+			          Next step
+		        </button>
+		      </div>
 		</div>
 	)
 }
+
 export default PersonalInfo;

@@ -24,7 +24,7 @@ class SignUp extends Component {
 			phone: '',
 			creditCard: '',
 			confirmPassword: '',
-			username: 'unknown',
+			username: '',
 			error: 0
 		};
 	}
@@ -46,8 +46,6 @@ class SignUp extends Component {
 			},
 		    then(err){
 		      if(!err){
-		      	// Router to Smthing or Else Router to Smt
-		      	//Router.transitionTo('/contact');
 		      }
 		    }
   		});
@@ -82,10 +80,11 @@ class SignUp extends Component {
 	}
 	handleChange= input => e =>{
 		const value = e.target.value;
-		const temp = value[value.length-1];
+		console.log(e.target);
 
 		// validate creditCard while typing ...
 		if(input === 'creditCard'){
+			const temp = value[value.length-1];
 			if(temp<'0'||temp>'9'){
 				return;
 			}
@@ -93,6 +92,7 @@ class SignUp extends Component {
 
 		// validate phone while typing ...
 		if(input === 'phone'){
+			const temp = value[value.length-1];
 			if((temp<'0'||temp>'9')&& temp !== '+'){
 				return;
 			}
@@ -157,6 +157,7 @@ class SignUp extends Component {
 		if(this.state.username.length < 4)
 		{
 			isFailed = 1;
+			console.log('username fails');
 			this.setState({
 				username: ''
 			});
@@ -177,29 +178,35 @@ class SignUp extends Component {
 	render(){	
 		let { step } = this.state;
 		const { isSignedIn, signIn, refTo } = this.props;
-		if ( isSignedIn ) return(<Redirect to={refTo}/>)
+		if( this.state.error ){
+			return(<Redirect to="/signup" />)
+		}
+		if ( isSignedIn ) {
+			return(<Redirect to={refTo}/>)
+		}
+		let renderRoute = null;
 		switch(step){
 			case 1:
-				return(
+				renderRoute=(
 					<PersonalInfo 
 						nextStep={this.handlePersonInfoSubmit}
 						handleChange={this.handleChange}
 						values={this.state}
 					/>
-				);
+				)
 			break;
 			case 2:
-				return(
+				renderRoute=(
 					<UserInfo 
 						nextStep={this.handleUserInfoSubmit}
 						prevStep={this.prevStep}
 						handleChange={this.handleChange}
 						values={this.state}
 					/>
-				);
+				)
 			break;
 			case 3:
-				return(
+				renderRoute=(
 					<SuccessfulSignUp
 						username={this.state.username}
 						signIn={this.signIn}
@@ -207,11 +214,12 @@ class SignUp extends Component {
 				)
 			break;
 			default:
-				return(
+				renderRoute=(
 					<h1>Opps.. something wrong happened</h1>
 				)
 			break;
 		}
+		return(renderRoute)
 	}
 }
 export default SignUp;

@@ -1,69 +1,58 @@
 import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
 
 const UserInfo = ({handleChange, nextStep, prevStep, values}) =>{
 	return(
 		<div>
-			<AppBar position="static" color="default">
-		        <Toolbar>
-		          <Typography variant="h6" color="inherit">
-		            UserInfo
-		          </Typography>
-		        </Toolbar>
-	      	</AppBar>
-	      	<TextField
-	            required
-	          
-	          label="Email"
-	          type="email"
-	          name="email"
-	          margin="normal"
-	          value={values.email}
-	          onChange={handleChange('email')}
-          	/>
-	      	<TextField
-	            required
-	          
-	          label="Username"
-	          margin="normal"
-	          onChange={handleChange('username')}
-          	/>
-          	{values.errors && <h1>password errors</h1>}
-          	<TextField
-	            required
-	          
-	          label="Password"
-	          value={values.password}
-	          type="password"
-	          margin="normal"
-	          onChange={handleChange('password')}
-          	/>
-          	
-          	<TextField
-	            required
-	          
-	          label="Confirm Password"
-	          type="password"
-	          value={values.confirmPassword}
-	          margin="normal"
-	          onChange={handleChange('confirmPassword')}
-          	/>
-          	 <Button size="large" variant="outlined" 
+			<h2>
+		        UserInfo
+	      	</h2>
+	      	<div className="email">
+		      	<label htmlFor="Email">Email</label>
+		      	<input
+		      	  type="email"
+		          name="Email"
+		          value={values.email}
+		          onChange={handleChange('email')}
+	          	/>
+          	</div>
+          	<div className="username">
+	          	<label htmlFor="Username">Username</label>
+	          	<input
+	          	  type="text"
+		          value={values.username}
+		          label="Username"
+		          onChange={handleChange('username')}/>
+	        </div>
+	        <div className="password">
+		        <label htmlFor="Password">Password</label>
+	          	<input
+	          	  type="password"
+		          name="Password"
+		          value={values.password}
+		          onChange={handleChange('password')}
+	          	/>
+          	</div>
+          	<div className="confirm-password">x
+	          	<label htmlFor="Confirm">Confirm</label>
+	          	<input
+	          	  type="password"
+		          name="Confirm"
+		          value={values.confirmPassword}
+		          onChange={handleChange('confirmPassword')}
+	          	/>
+          	</div>
+          	 <button
           	 	color="primary" 
           	 	onClick={nextStep}
           	 >
 		          Next step
-	        </Button>
-	         <Button size="large" variant="outlined" 
+	        </button>
+	        <button
           	 	color="secondary" 
           	 	onClick={prevStep}
           	 >
 		          Prev step
-	        </Button>
+	        </button>
 		</div>
 	)
 }

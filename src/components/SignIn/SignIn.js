@@ -26,8 +26,9 @@ class SignIn extends Component {
 	}
 	render(){
 		const { isSignedIn, refTo } = this.props;
-		//let { from } = this.props.location.state || { from: { pathname: "/" } };
-		if(isSignedIn) return (<Redirect to={refTo} />);
+		if ( isSignedIn ){ 
+			return (<Redirect to = {refTo} />);
+		}
 		return(
 			<div id="signin">
 				<div id="left">
@@ -62,9 +63,9 @@ class SignIn extends Component {
 						<a href="/signup" className="secondary-btn">Create an account</a>
 					</div>
 					<footer id="signin-footer">
-          					<p>Copyright &copy; 2018, Sluralpright All Rights Reserved</p>
+          					<p>Copyright &copy; 2018, All Rights Service</p>
           					<div>
-				            	<a href="#">Terms of use</a> | <a href="#">Privacy Policy</a>
+				            	<a href="/terms">Terms of use</a> | <a href="/privacies">Privacy Policy</a>
 				         	</div>
 			        </footer>
 				</div>
