@@ -30,6 +30,14 @@ class CommentApp extends Component {
 	componentDidMount(){
 
 	}
+	handleSignOut=()=>{
+		this.setState((prevState)=>{
+			return {
+				isSignedIn: !prevState.isSignedIn,
+				curUser: 'unknown'
+			};
+		})
+	}
 	handleSignIn=(usr,pass)=>{
 		// do dome fake validations
 		if(usr === 'admin' && pass === 'admin'){
@@ -42,7 +50,7 @@ class CommentApp extends Component {
 		return 0;
 	}
   render() {
-  	let { isSignedIn } = this.state;
+  	let { isSignedIn, curUser } = this.state;
 	    return (
 	    <BrowserRouter>
 	    <div>
@@ -52,7 +60,7 @@ class CommentApp extends Component {
 			    <SignIn 
 			    	signIn={this.handleSignIn} 
 			    	isSignedIn={this.state.isSignedIn}
-			    	refTo={'/dashboard'}
+			    	refTo={'/news'}
 			    />
 			   )}
 	        />
@@ -62,7 +70,7 @@ class CommentApp extends Component {
 			    	<SignUp
 			    		signIn={this.handleSignIn} 
 			    		isSignedIn={this.state.isSignedIn}
-			    		refTo={'/dashboard'}
+			    		refTo={'/news'}
 			    	/>
 			    )}
 	        />
@@ -77,9 +85,20 @@ class CommentApp extends Component {
 					<Redirect to="/signin" />
 				)}
 			/>
-			<Route path='/contact' component={Contact}/> 
-			<Route path='/forgot-password' component={ForgotPassword}/>
-			<Route path='/home' component={Home}/>
+			<Route path='/contact' component={Contact} /> 
+			<Route path='/forgot-password' component={ForgotPassword} />
+			<Route path='/' exact render={()=>
+				<Home 
+					username={curUser} 
+					signOut={this.handleSignOut}
+					/>} 
+			/>
+			<Route path='/news'  render={()=>
+				<Home 
+					username={curUser} 
+					signOut={this.handleSignOut}
+				/>} 
+			/>
 			<Route component={NoMatch} />
 	      </Switch>
 	    </div>
