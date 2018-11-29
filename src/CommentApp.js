@@ -64,7 +64,6 @@ class CommentApp extends Component {
 			    />
 			   )}
 	        />
-
 			<Route path="/signup" 
 				render={() => (
 			    	<SignUp
@@ -74,7 +73,7 @@ class CommentApp extends Component {
 			    	/>
 			    )}
 	        />
-
+{/*
 			<Route path='/dashboard' 
 				render={()=>(
 					isSignedIn ?
@@ -84,17 +83,19 @@ class CommentApp extends Component {
 					:
 					<Redirect to="/signin" />
 				)}
-			/>
+			/>*/}
 			<Route path='/contact' component={Contact} /> 
 			<Route path='/forgot-password' component={ForgotPassword} />
 			<Route path='/' exact render={()=>
 				<Home 
 					username={curUser} 
 					signOut={this.handleSignOut}
+					isSignedIn={isSignedIn}
 					/>} 
 			/>
-			<Route path='/news'  render={()=>
-				<Home 
+			<Route path='/news' render={()=>
+				<Home
+					isSignedIn={isSignedIn} 
 					username={curUser} 
 					signOut={this.handleSignOut}
 				/>} 
