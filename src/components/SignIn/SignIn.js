@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import './style.css';
+
 class SignIn extends Component {
 	constructor(props){
 		super(props);
@@ -10,8 +11,7 @@ class SignIn extends Component {
 		};
 	}
 	signIn=(e)=>{
-		e.preventDefault();
-		const isSuccessful = this.props.signIn(this.state.username,this.state.password);
+		const isSuccessful = this.props.authenticate(this.state.username, this.state.password);
 		if(!isSuccessful){
 			alert('Wrong Password or Username');
 			this.setState({
@@ -19,6 +19,7 @@ class SignIn extends Component {
 				password: '',
 			});
 		}
+		e.preventDefault();
 	}
 	handleChange = input => e =>{
 		const value = e.target.value;

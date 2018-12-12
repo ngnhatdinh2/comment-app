@@ -2,7 +2,8 @@
 	display: grid;
 	height: 100vh;
 	grid-template-columns: 40px 50px auto 50px 40px;
-  	grid-template-rows: 15% auto auto;
+  	grid-template-rows: 15% 85% auto;
+  	position: absolute;
   }
 .signin-nav-item{
 	display: flex;
@@ -24,6 +25,34 @@
 	cursor: pointer;
 }
 .signout-btn:hover{
+	background-color: white;
+	color: purple;
+	transition: 0.5s;
+}
+.signin-btn{
+	all: unset;
+	color: purple;
+	padding: 0.5rem 0.8rem;
+	border-radius: 2px;
+	transition: 0.5s;
+	cursor: pointer;
+}
+.signin-btn:hover{
+	background-color: white;
+	color: purple;
+	transition: 0.5s;
+}
+.signup-btn{
+	all: unset;
+	background-color: purple;
+	border: 1px solid purple;
+	color: white;
+	padding: 0.8rem;
+	border-radius: 2px;
+	transition: 0.5s;
+	cursor: pointer;
+}
+.signup-btn:hover{
 	background-color: white;
 	color: purple;
 	transition: 0.5s;
@@ -52,9 +81,6 @@
 .header-bar img{
 	width: 3rem;
 }
-.home-btn{
-	text-decoration: none;
-}
 .catelogy-bar{
 	display: flex;
 	justify-content: space-around;
@@ -62,8 +88,8 @@
 
 }
 .catelogy-bar > a{
+
 	color: black;
-	text-decoration: none;
 	text-transform: uppercase;
 	letter-spacing: 1.5px;
 	border: 1px solid white;
@@ -74,6 +100,7 @@
 	transition: 0.5s;
 }	
 .catelogy-bar >a:hover{
+	text-decoration: none;
 	color: purple;
 	border: 1px solid purple;
 	transition: 0.5s;
@@ -88,97 +115,96 @@
 .top-page p{
 	margin: 0;
 }
-.small-post-container{
-	flex: 3;
-	width: 150px;
-}
-.medium-post-container{
-	flex: 3;
-	width: 300px;
-	margin-right: 10px;
-}
+
 .big-post-container{
 	flex: 5;
 	width: 500px;
 	margin-right: 10px;
 	display: flex;
 }
-.big-post img{
+.medium-post-container{
+	flex: 3;
+	width: 150px;
+}
+.small-post-container{
+	flex: 3;
+	width: 300px;
+	margin-right: 10px;
+}
+.big-post .post-image{
 	width: 90%;
 	height: 50%;
+	cursor: pointer;
 }
-
 .big-post .post-intro{
 	text-align: left;
 	display: flex;
 	flex-direction: column;
-	margin-left: 30%;
+	/*margin-left: 10%;*/
 }
-
-.post-intro p{
-	font-size: 0.8rem;
-	font-weight: 200;
-	letter-spacing: 1px;
-}
-.big-post .post-intro span{
-	font-size:  0.9rem;
-}
-.medium-post-container img{
-	width: 40%;
-	height: 50%;
-}
-.medium-post{
-	display: flex;
-	margin-bottom: 0.8rem;
-}
-.medium-post .subtitle{
-	font-size: 1.2rem;
-}
-.medium-post span{
-	font-size: 0.8rem; 
-}
-.medium-post .post-intro{
-	margin: 0;
-	margin-left: 0.5rem;
-	display: flex;
-	flex-direction: column;
-}
-.big-post > img{
-	cursor: pointer;
-}
-.medium-post > img{
-	cursor: pointer;
-}
-.small-post > 	img{
+.medium-post .post-image{
 	width: 100%;
-	cursor: pointer;
 	height: 50%;
+	cursor: pointer;
 }
-.small-post .post-intro p{
+.medium-post .post-body{
 	font-size: 0.9rem;
 	font-weight: 300;
 	letter-spacing: 0.6px;
 }
-.small-post span{
-	margin-left: 0.5rem;
+.small-post{
+	display: flex;
+	margin-bottom: 0.8rem;
 }
-.post-intro > .subtitle{
+.small-post .post-image{
+	width: 40%;
+	height: 50%;
+	cursor: pointer;
+}
+.small-post .subtitle{
+	font-size: 1.2rem;
+}
+.small-post .post-intro{
+	margin: 0;
+	margin-left: 0.5rem;
+	display: flex;
+	align-content: flex-start;
+	flex-direction: column;
+}
+.subtitle{
 	cursor: pointer;
 	overflow: hidden;
 }
-.post-intro > p{
+.post-body{
 	cursor: pointer;
 }
-.post-intro > span{
+.author-info{
+	z-index: 100;
 	cursor: default;
+	visibility: hidden;	
+	display: inline-block;	
+	background-color: lightgrey;
+	position: relative;
 }
+.author-info > div{
+	display: flex;
+	flex-direction: column;
+}
+.display{
+	visibility: visible;
+	top: -50px;
+}
+.hover-state{
+	padding: 0;
+	display: inline-block;
+}
+
 .bottom-page{
 	margin-top: 1rem;
 	grid-column: 3 / 4;
 	grid-row: 3 /  3;
 	display: flex;
-	flex-direction: column;
-	/*align-items: center;*/
+	flex-direction: column;	
 }
 .bottom-page .adver{
 	background-color: grey;

@@ -1,34 +1,62 @@
 import React, { Component } from 'react';
 //import CommentsContainer from './components/CommentsContainer/CommentsContainer';
+import Test from './components/Test/Test';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
 import Dashboard from './components/Dashboard/Dashboard';
 import Home from './components/Home/Home';
+import base from './components/Base/Base';
 import { BrowserRouter, Route, Switch, Link, Redirect } from 'react-router-dom';
 import './App.css';
-
-/*const fakeAuth = {
-  isAuthenticated: false,
-  authenticate(cb) {
-    this.isAuthenticated = true;
-    setTimeout(cb, 100); // fake async
-  },
-  signout(cb) {
-    this.isAuthenticated = false;
-    setTimeout(cb, 100);
-  }
-};*/
 
 class CommentApp extends Component {
 	constructor(props){
 		super(props);
 		this.state={
+			users: null,
 			isSignedIn: false,
 			curUser: 'unknown',
 		}
 	}
 	componentDidMount(){
-
+		this.ref = base.fetch('users', {
+		    context: this,
+		    asArray: true
+		  }).then(users => {
+		    this.setState({users: users})
+		  }).catch(error => {
+		    console.log('error')
+		  })
+	}
+	componentWillUnmount(){
+		base.removeBinding(this.ref);
+	}
+	fakeSignUpAuth=({email, name, username, phone})=>{
+		const user = this.state.users.find(user=>
+			user.email === email ||
+			user.name === name ||
+			user.username === username ||
+			user.phone === phone
+		);
+		if(user){
+			return 0;
+		}
+		else{
+			return 1;
+		}
+	}
+	fakeAuthentication=(username, password)=>{
+		const user = this.state.users.find(user=> user.username === username && user.password === password);
+		if (!user){
+			return 0;
+		}
+		else{
+			this.setState({
+				isSignedIn: 1,
+				curUser: user.username
+			})
+			return 1;
+		}
 	}
 	handleSignOut=()=>{
 		this.setState((prevState)=>{
@@ -37,17 +65,6 @@ class CommentApp extends Component {
 				curUser: 'unknown'
 			};
 		})
-	}
-	handleSignIn=(usr,pass)=>{
-		// do dome fake validations
-		if(usr === 'admin' && pass === 'admin'){
-			this.setState({
-				isSignedIn: 1,
-				curUser: 'admin'
-			})
-			return 1;
-		}
-		return 0;
 	}
   render() {
   	let { isSignedIn, curUser } = this.state;
@@ -58,8 +75,8 @@ class CommentApp extends Component {
 	        {/*<CommentsContainer name='nguyennhatdinh' postId={1}/>*/}
 	        <Route path="/signin" render={() => (
 			    <SignIn 
-			    	signIn={this.handleSignIn} 
 			    	isSignedIn={this.state.isSignedIn}
+			    	authenticate={this.fakeAuthentication}
 			    	refTo={'/news'}
 			    />
 			   )}
@@ -67,8 +84,9 @@ class CommentApp extends Component {
 			<Route path="/signup" 
 				render={() => (
 			    	<SignUp
-			    		signIn={this.handleSignIn} 
+			    		signIn={this.fakeAuthentication} 
 			    		isSignedIn={this.state.isSignedIn}
+			    		authenticate={this.fakeSignUpAuth}
 			    		refTo={'/news'}
 			    	/>
 			    )}
@@ -100,6 +118,7 @@ class CommentApp extends Component {
 					signOut={this.handleSignOut}
 				/>} 
 			/>
+			<Route path="/test" component={Test} />
 			<Route component={NoMatch} />
 	      </Switch>
 	    </div>

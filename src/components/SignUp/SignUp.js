@@ -55,7 +55,13 @@ class SignUp extends Component {
 			alert('UserInfo Wrong Input Fomat');
 		}
 		else{
-			this.addNewUser();
+			// use Bitmap for this mf
+			if(this.props.authenticate(this.state)){
+				this.addNewUser();
+			}
+			else{
+
+			}
 			this.setState({
 				step: this.state.step + 1
 			});

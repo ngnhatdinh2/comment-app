@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
 import { Route, Link, Redirect, withRouter } from 'react-router-dom';
+import uuidv1 from 'uuid/v1';
 import './Home.css';
+
+import {provider, auth} from '../Base/Base';
 // MUST READ
 // routes are defined here: /news   Posts: De cu, gon nhieu catelogy
 // news/1 tro di Posts: ung voi moi catelogy
 
+const authWithFireBase=()=>{
+
+    auth.signInWithPopup(provider).then(function(result) {
+  // This gives you a Google Access Token. You can use it to access the Google API.
+      console.log(result.user);
+    }).catch(function(error) {
+      console.log('auth error', error);
+  });
+  }
 const catelogies=['history','politics','sport','culture','tech','health'];
 
 const CatelogyPage = ({ posts, catelogy }) =>{
@@ -12,21 +24,21 @@ const CatelogyPage = ({ posts, catelogy }) =>{
     <React.Fragment>
       <div className="top-page">
         <div className="big-post-container">
-          <Post 
+          <PostWithRouter
             post={posts[0]}
             classPost="big-post"
           />
         </div>
-        <div className="medium-post-container">
-          <Post 
-            post={posts[0]}
-            classPost="medium-post" 
-          />
-        </div>
         <div className="small-post-container">
-           <Post 
+          <PostWithRouter 
             post={posts[0]}
             classPost="small-post" 
+          />
+        </div>
+        <div className="medium-post-container">
+           <PostWithRouter
+            post={posts[0]}
+            classPost="medium-post" 
           />
         </div>
       </div>
@@ -57,25 +69,30 @@ const CatelogyPage = ({ posts, catelogy }) =>{
   )
 }
 const Post=(props)=>{
-  const { post, classPost, onClick } = props;
+  const { post, classPost, onClick, history } = props;
   return(
     <div className={classPost}>
-      <img src={'https://picsum.photos/800/600/?random'} alt="wallpaper"/>
+      <img className="post-image" src={`https://robohash.org/${uuidv1()}`} alt="wallpaper"/>
       <div className="post-intro">
         <h2 className="subtitle" onClick={onClick}>{post.title}</h2>
         {
-          classPost !== "medium-post" && <p>{post.body}</p>
+          //classPost !== "medium-post" && <p onClick={onClick}>{post.body}</p>
         }
-        <span className="author">{'Author not setted'}</span>
-        <span>{'Published Date not found'}</span>
+        <p className="post-body" onClick={onClick}>{post.body}</p>
+        <div>
+          <AuthorCase />
+        </div>
       </div>
     </div>
   )
 }
+const PostWithRouter= withRouter((props) => (
+  <Post {...props} onClick={ () => props.history.push('/signup') }/>
+))
 const SignInButton = withRouter(({ history }) =>(
   <button
     className="signin-btn"
-    onClick={() => { history.push('/signin') }}
+    onClick={authWithFireBase}
   >
     Sign In
   </button>
@@ -88,10 +105,10 @@ const SignUpButton = withRouter(({ history }) =>(
     Sign Up
   </button>
 ));
-const SignOutButton = withRouter(({ history }) =>(
+const SignOutButton = withRouter(({ history, signOut }) =>(
   <button
     className="signout-btn"
-    onClick={() => { console.log('sign out') }}
+    onClick={signOut}
   >
     Sign Out
   </button>
@@ -100,7 +117,7 @@ const SignOutNavItem=({ username, signOut })=>{
   return(
   <div className="signin-nav-item">
     <p>{username}</p>
-    <SignOutButton />
+    <SignOutButton signOut={signOut}/>
   </div>
   )
 }
@@ -120,13 +137,14 @@ const Header = ({ SignInOrSignOut }) => {
         <h1 className="logo">
           Blog
         </h1>
+        <RenderProps />
         {SignInOrSignOut}
       </div>
       {/*some error here, please delete /news/ to Debug*/}
       <div className="catelogy-bar">
         {
           catelogies.map((catelogy, index)=>
-              <Link to={`${index+1}`} key={index}>{catelogy}</Link>
+              <Link to={`/news/${index+1}`} key={index}>{catelogy}</Link>
           )
         }
       </div>
@@ -142,11 +160,11 @@ const MainPost=({ post })=>{
   return(
     <div className="main-post-container">
       <div className="main-post">
-        <img src="https://picsum.photos/800/600/?random" alt=""/>
+        <img src="https://picsum.photos/800/600/?random" alt="post image"/>
         <div className="post-content">
           <h1 className="post-title">{post.title}</h1>
           <div className="post-info">
-            <img src={`https://robohash.org/${post.title}`} alt=""/>
+            <img src={`https://robohash.org/${post.title}`} alt="" />
             <span className="author">Nguyen Nhat Dinh</span>
             <span className="date">Jan 1 Updated on Jan 03, 2018</span>
           </div>
@@ -195,13 +213,8 @@ const PopularPostList=({ posts, catelogy })=>{
 const PostList=({ posts, catelogy })=>{ 
           return(
             posts && posts.map( post => 
-                                <div className="bottom-left-container-item" key={post.id}>
-                                  <img src={`https://robohash.org/${post.title}`} alt=""/>
-                                  <Link  
-                                    to={`/news/${catelogy}/${post.title}`}
-                                  > 
-                                      {post.title}<br/>
-                                  </Link>
+                                <div className="bottom-left-container-item" key={post.id}>  
+                                  <PostWithRouter post={post} classPost="small-post" />
                                 </div>
                                 ))
 }
@@ -220,7 +233,7 @@ class Home extends Component {
 			.catch(err=>console.log('error'))
 	}
   handleSignOut=()=>{
-    console.log('sign out');
+    this.props.signOut();
   }
   handleSignIn=()=>{
     console.log('sign in'); 
@@ -230,17 +243,14 @@ class Home extends Component {
   }
   render() {
   		const { posts } = this.state;
-      const { match, username, signOut, isSignedIn } = this.props;
+      const { match, username, isSignedIn } = this.props;
       const SignInOrSignOutComponent = 
         isSignedIn ? 
           <SignOutNavItem 
             username={username}
             signOut={this.handleSignOut}
           /> 
-          : <SignInNavItem 
-            signIn={this.handleSignIn}
-            signUp={this.handleSignUp}
-          />;
+          : <SignInNavItem />;
   		return(
       <div>
         <div className="home">
@@ -260,7 +270,6 @@ class Home extends Component {
           }
         { 
           //render the current clicked post
-
         posts && (
           <Route path={`/news/:catelogy/:title`}
             render={({ match })=>
@@ -289,41 +298,74 @@ class Home extends Component {
       </div>
     );}
 }
+class RenderProps extends React.Component {
+  render() {
+    return (
+      <HoverState
+        render={isHover => {
+          if (isHover) {
+            return <button>🌙</button>;
+          }
+
+          return <button>☀️</button>;
+        }}
+      />
+    );
+  }
+}
+const Author = (props) =>{
+  console.log(props.className);
+  return(
+    <div className={"author-info "+ props.className}>
+      <div>
+        <img src="" alt="author avatar"/>
+        <strong>Author name</strong>
+        <button>
+          Follow
+        </button>
+      </div>
+    </div>
+  )
+}
+class AuthorCase extends React.Component {
+  state = { isHover: false };
+  handleHover = isHover => () => {
+    this.setState({ isHover });
+  };
+  render() {
+    return(
+      <div className="hover-state">
+        <span  
+          onMouseOver={this.handleHover(true)}
+          onMouseOut={this.handleHover(false)}
+        >
+          Dinh
+        </span>
+        {
+          this.state.isHover ? <Author className="display"/> : null
+        }
+      </div>
+    )
+  }
+}
+class HoverState extends React.Component {
+  state = { isHover: false };
+
+  handleHover = isHover => () => {
+    this.setState({ isHover });
+  };
+  render() {  
+    return (
+      <div
+        onMouseOver={this.handleHover(true)}
+        onMouseLeave={this.handleHover(false)}
+        className="hover-state"
+      >
+        { this.props.children }
+        {this.props.render(this.state.isHover)}
+      </div>
+    );
+  }
+}
 
 export default Home;
-
-{/*<div className="big-post">
-                    <img src="https://img.timesnownews.com/story/1521816651-lord_shiva_11.jpg?d=600x450" alt=""/>
-                    <div className="post-intro">
-                      <h2 className="subtitle">Subtitle</h2>
-                      <p>
-                        Defines the columns and rows of the grid 
-                        with a space-separated list of values. The values represent t
-                        he track size, and the space between them represents the grid 
-                        line.
-                      </p>
-                      <span>Nguyen Nhat Dinh</span>
-                      <span>01/01/2019</span>
-                    </div>
-                  </div>
-
- this is Small-Post
-<img src="https://img.timesnownews.com/story/1521816651-lord_shiva_11.jpg?d=600x450" alt=""/>
-                  <div className="post-intro">
-                    <h2 className="subtitle">Subtitle</h2>
-                    <p>
-                      Defines the columns and rows of the grid 
-                      with a space-separated list of values. The values represent t
-                      he track size, and the space between them represents the grid 
-                      line.
-                    </p>
-                    <div className="author">
-                      <span>Nguyen Nhat Dinh</span>
-                      <span>01/01/2019</span>
-                    </div>
-                  </div>
-
-
-
-
-*/}
