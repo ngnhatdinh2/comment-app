@@ -1,19 +1,17 @@
 import React, { Component } from 'react';
 import PersonalInfo from './PersonalInfo.js';
-import UserInfo from './PersonalDetails.js';
-import SuccessSignUp from './SuccessSignUp.js';
+import UserInfo from './UserInfo.js';
+import SuccessfulSignUp from './SuccessSignUp.js';
 import base from '../Base/Base';
 import uuidv1 from 'uuid/v1';
+import {BrowserRouter as Router, Redirect } from 'react-router-dom';	
 import './style.css';
 class SignUp extends Component {
 	componentWillMount(){
-		base.syncState('username', {
-    	context: this,
-    	state: 'username',
-  	});
-	}
-	componentWillUnmount(){
-		base.removeBinding(this.ref);
+		// base.syncState('users', {
+  //   	context: this,
+  //   	state: 'username',
+  // 	});
 	}
 	constructor(props){
 		super(props);
@@ -27,13 +25,16 @@ class SignUp extends Component {
 			creditCard: '',
 			confirmPassword: '',
 			username: '',
-			
 			error: 0
 		};
 	}
+	componentWillUnmount(){
+		//base.removeBinding(this.ref);
+	}
+	// attemp to 
 	addNewUser=()=>{
 		const { email, name, country, password, phone, creditCard, username } = this.state;
-		base.post(`users/${uuid1()}`, {
+		base.post(`users/${uuidv1()}`, {
 		    data: {
 			    	email,
 					name,
@@ -45,29 +46,24 @@ class SignUp extends Component {
 			},
 		    then(err){
 		      if(!err){
-		        console.log('Posted');
 		      }
 		    }
   		});
-		const user={
-				email,
-				name,
-				country,
-				password,
-				phone,
-				creditCard,
-				username,
-		};
 	}
 	handleUserInfoSubmit=()=>{
-		const step = this.state.step;
 		if(!this.validateUserInfo()){
-			alert('Wrong Input Fomat');
+			alert('UserInfo Wrong Input Fomat');
 		}
 		else{
-			this.addNewUser();
+			// use Bitmap for this mf
+			if(this.props.authenticate(this.state)){
+				this.addNewUser();
+			}
+			else{
+
+			}
 			this.setState({
-				step: step + 1
+				step: this.state.step + 1
 			});
 		}
 	}
@@ -90,10 +86,11 @@ class SignUp extends Component {
 	}
 	handleChange= input => e =>{
 		const value = e.target.value;
-		const temp = value[value.length-1];
+		console.log(e.target);
 
 		// validate creditCard while typing ...
 		if(input === 'creditCard'){
+			const temp = value[value.length-1];
 			if(temp<'0'||temp>'9'){
 				return;
 			}
@@ -101,6 +98,7 @@ class SignUp extends Component {
 
 		// validate phone while typing ...
 		if(input === 'phone'){
+			const temp = value[value.length-1];
 			if((temp<'0'||temp>'9')&& temp !== '+'){
 				return;
 			}
@@ -165,6 +163,7 @@ class SignUp extends Component {
 		if(this.state.username.length < 4)
 		{
 			isFailed = 1;
+			console.log('username fails');
 			this.setState({
 				username: ''
 			});
@@ -178,12 +177,23 @@ class SignUp extends Component {
 		}
 		return 1;
 	}
+	signIn=(e)=>{
+		e.preventDefault();
+		this.props.signIn(this.state.username, this.state.password);
+	}
 	render(){	
 		let { step } = this.state;
-		// let user= this.state.user;
+		const { isSignedIn, signIn, refTo } = this.props;
+		if( this.state.error ){
+			return(<Redirect to="/signup" />)
+		}
+		if ( isSignedIn ) {
+			return(<Redirect to={refTo}/>)
+		}
+		let renderRoute = null;
 		switch(step){
 			case 1:
-				return(
+				renderRoute=(
 					<PersonalInfo 
 						nextStep={this.handlePersonInfoSubmit}
 						handleChange={this.handleChange}
@@ -192,7 +202,7 @@ class SignUp extends Component {
 				)
 			break;
 			case 2:
-				return(
+				renderRoute=(
 					<UserInfo 
 						nextStep={this.handleUserInfoSubmit}
 						prevStep={this.prevStep}
@@ -202,16 +212,20 @@ class SignUp extends Component {
 				)
 			break;
 			case 3:
-				return(
-					<SuccessSignUp />
+				renderRoute=(
+					<SuccessfulSignUp
+						username={this.state.username}
+						signIn={this.signIn}
+					/>
 				)
 			break;
 			default:
-				return(
+				renderRoute=(
 					<h1>Opps.. something wrong happened</h1>
 				)
 			break;
 		}
+		return(renderRoute)
 	}
 }
 export default SignUp;

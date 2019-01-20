@@ -1,0 +1,38 @@
+
+(Home)
+=> {posts catelogy} (Catelogy)
+	=> {post} (Post)
+	=> {posts, catelogy} (PostList)
+	=> {posts, catelogy} (PopularPostList)
+
+
+
+
+
+
+
+<Dialog title="Mars Exploration Program"
+              message="How should we refer to you?">
+        <input value={this.state.login}
+               onChange={this.handleChange} />
+
+        <button onClick={this.handleSignUp}>
+          Sign Me Up!
+        </button>
+</Dialog>
+<FancyBorder color="blue">
+      <h1 className="Dialog-title">
+        {props.title}
+      </h1>
+      <p className="Dialog-message">
+        {props.message}
+      </p>
+      {props.children}
+</FancyBorder>
+
+!!!! Advanced Problems:
+#1: Pass props to many
+imtermideate Components
+->Solutions: 
+	+ Use Context (*)
+	+ https://reactjs.org/docs/context.html#before-you-use-context
