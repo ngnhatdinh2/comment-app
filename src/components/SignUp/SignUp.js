@@ -4,7 +4,7 @@ import UserInfo from './UserInfo.js';
 import SuccessfulSignUp from './SuccessSignUp.js';
 import base from '../Base/Base';
 import uuidv1 from 'uuid/v1';
-import {BrowserRouter as Router, Redirect } from 'react-router-dom';	
+import {BrowserRouter as Router, Redirect } from 'react-router-dom';
 import './style.css';
 class SignUp extends Component {
 	componentWillMount(){
@@ -15,7 +15,7 @@ class SignUp extends Component {
 	}
 	constructor(props){
 		super(props);
-		this.state={ 
+		this.state={
 			step: 1,
 			email: '',
 			name: '',
@@ -31,7 +31,7 @@ class SignUp extends Component {
 	componentWillUnmount(){
 		//base.removeBinding(this.ref);
 	}
-	// attemp to 
+	// attemp to
 	addNewUser=()=>{
 		const { email, name, country, password, phone, creditCard, username } = this.state;
 		base.post(`users/${uuidv1()}`, {
@@ -141,7 +141,7 @@ class SignUp extends Component {
 			isFailed = 1;
 		}
 		this.setState({
-			name, 
+			name,
 			country,
 			phone,
 			creditCard
@@ -170,7 +170,7 @@ class SignUp extends Component {
 		}
 		if(isFailed){
 			this.setState({
-				password: '', 
+				password: '',
 				confirmPassword: '',
 			});
 			return 0;
@@ -181,7 +181,7 @@ class SignUp extends Component {
 		e.preventDefault();
 		this.props.signIn(this.state.username, this.state.password);
 	}
-	render(){	
+	render(){
 		let { step } = this.state;
 		const { isSignedIn, signIn, refTo } = this.props;
 		if( this.state.error ){
@@ -194,7 +194,7 @@ class SignUp extends Component {
 		switch(step){
 			case 1:
 				renderRoute=(
-					<PersonalInfo 
+					<PersonalInfo
 						nextStep={this.handlePersonInfoSubmit}
 						handleChange={this.handleChange}
 						values={this.state}
@@ -203,7 +203,7 @@ class SignUp extends Component {
 			break;
 			case 2:
 				renderRoute=(
-					<UserInfo 
+					<UserInfo
 						nextStep={this.handleUserInfoSubmit}
 						prevStep={this.prevStep}
 						handleChange={this.handleChange}

@@ -7,7 +7,7 @@ var firebaseApp  = firebase.initializeApp({
   authDomain: 'hellow-world-847f3.firebaseapp.com',
   databaseURL: 'https://hellow-world-847f3.firebaseio.com',
   projectId: 'hellow-world-847f3',
-  storageBucket : "hellow-world-847f3. appspot.com " ,     
+  storageBucket : "hellow-world-847f3.appspot.com" ,     
   messagingSenderId :"647527699737",
 });
 

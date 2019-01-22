@@ -91,6 +91,7 @@ const Test =() =>{
   const Temp = MyHoc(MyComponent);
   return(
   <div>
+
     {console.log(MyComponent.data)}
     {/*<h1>Move 🐱 Around</h1>
     {withMouse(Cat)}*/}
