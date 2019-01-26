@@ -4,14 +4,11 @@ import UserInfo from './UserInfo.js';
 import SuccessfulSignUp from './SuccessSignUp.js';
 import base from '../Base/Base';
 import uuidv1 from 'uuid/v1';
-import {BrowserRouter as Router, Redirect } from 'react-router-dom';
+import {BrowserRouter as Router, Redirect, withRouter } from 'react-router-dom';
+import UserProfile from '../UserProfile/UserProfile'
 import './style.css';
 class SignUp extends Component {
 	componentWillMount(){
-		// base.syncState('users', {
-  //   	context: this,
-  //   	state: 'username',
-  // 	});
 	}
 	constructor(props){
 		super(props);
@@ -36,19 +33,22 @@ class SignUp extends Component {
 		const { email, name, country, password, phone, creditCard, username } = this.state;
 		base.post(`users/${uuidv1()}`, {
 		    data: {
-			    	email,
+			    email,
 					name,
 					country,
 					password,
 					phone,
 					creditCard,
 					username,
-			},
-		    then(err){
-		      if(!err){
-		      }
-		    }
-  		});
+				}
+		}).then(()=>{
+			UserProfile.setName(username);
+			UserProfile.signIn();
+			console.log(UserProfile, 'COME HERE', this.state);
+			//this.props.history.push('/news');
+			}
+		)
+		.catch( (e) => console.log(e) )
 	}
 	handleUserInfoSubmit=()=>{
 		if(!this.validateUserInfo()){
@@ -86,8 +86,6 @@ class SignUp extends Component {
 	}
 	handleChange= input => e =>{
 		const value = e.target.value;
-		console.log(e.target);
-
 		// validate creditCard while typing ...
 		if(input === 'creditCard'){
 			const temp = value[value.length-1];
@@ -177,18 +175,11 @@ class SignUp extends Component {
 		}
 		return 1;
 	}
-	signIn=(e)=>{
-		e.preventDefault();
-		this.props.signIn(this.state.username, this.state.password);
-	}
 	render(){
 		let { step } = this.state;
 		const { isSignedIn, signIn, refTo } = this.props;
 		if( this.state.error ){
 			return(<Redirect to="/signup" />)
-		}
-		if ( isSignedIn ) {
-			return(<Redirect to={refTo}/>)
 		}
 		let renderRoute = null;
 		switch(step){
@@ -213,10 +204,7 @@ class SignUp extends Component {
 			break;
 			case 3:
 				renderRoute=(
-					<SuccessfulSignUp
-						username={this.state.username}
-						signIn={this.signIn}
-					/>
+					<SuccessfulSignUp />
 				)
 			break;
 			default:
@@ -228,4 +216,4 @@ class SignUp extends Component {
 		return(renderRoute)
 	}
 }
-export default SignUp;
+export default withRouter(SignUp);

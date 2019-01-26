@@ -1,143 +1,33 @@
 import React, { Component } from 'react';
 import { Route, Link, Redirect, withRouter } from 'react-router-dom';
-import uuidv1 from 'uuid/v1';
-import './Home.css';
-import base from '../Base/Base';
 import {provider, auth}  from '../Base/Base';
+import uuidv1 from 'uuid/v1';
+import base from '../Base/Base';
+import './Home.css';
+import posts from '../Test/posts.js';
+import UserProfile from '../UserProfile/UserProfile';
+import CatelogyPage from './CatelogyPage';
+import PostPage from './PostPage';
 // MUST READ
 // routes are defined here: /news   Posts: De cu, gon nhieu catelogy
 // news/1 tro di Posts: ung voi moi catelogy
 
 // TEMPORARY
-const authWithFireBase=()=>{
+const authWithFireBase=(props)=>{
     auth.signInWithPopup(provider).then(function(result) {
   // This gives you a Google Access Token. You can use it to access the Google API.
-      console.log(result.user);
+      UserProfile.setUsername(result.user.providerData[0].displayName);
+      this.setState({state: this.state});
     }).catch(function(error) {
       console.log('auth error', error);
   });
   }
 const catelogies=['history','politics','sport','culture','tech','health'];
 
-
-const CatelogyPage = ({ posts, catelogy }) =>{
-  return(
-    <React.Fragment>
-      <div className="top-page">
-        <div className="big-post-container">
-          <PostWithRouter
-            post={posts[0]}
-            classPost="big-post"
-          />
-        </div>
-        <div className="small-post-container">
-          <PostWithRouter
-            post={posts[0]}
-            classPost="small-post"
-          />
-        </div>
-        <div className="medium-post-container">
-           <PostWithRouter
-            post={posts[0]}
-            classPost="medium-post"
-          />
-        </div>
-      </div>
-      <div className="bottom-page">
-        <div className="adver">
-          ADVERTISEMENT
-        </div>
-        <div className="post-container">
-          <div className="bottom-left-container">
-            <Route  path='/news' render={()=>
-              <PostList
-                posts={posts}
-                catelogy={catelogy}
-              />}
-            />
-          </div>
-          <div className="bottom-right-container">
-            <Route  path='/news' render={()=>
-              <PopularPostList
-                posts={posts}
-                catelogy={catelogy}
-              />}
-            />
-          </div>
-        </div>
-      </div>
-    </React.Fragment>
-  )
-}
-const PostContent=({ post })=>{
-  if(!post){
-    return (
-      <h1 className="errorPage">OOPSS!!! Somthing went wrong</h1>
-    )
-  }
-  return(
-    <div className="main-post-container">
-      <div className="main-post">
-        <img src="https://picsum.photos/800/600/?random" alt="post image"/>
-        <div className="post-content">
-          <h1 className="post-title">{post.title}</h1>
-          <div className="post-info">
-            <img src={`https://robohash.org/${post.title}`} alt="" />
-            <span className="author">Nguyen Nhat Dinh</span>
-            <span className="date">Jan 1 Updated on Jan 03, 2018</span>
-          </div>
-          <div className="post-tag">
-            <div>#{'ngu'}</div>
-            <div>#{'sex'}</div>
-          </div>
-          <p className="post-body">{post.body}</p>
-        </div>
-        <div className="scroll-bar">
-         <div className="love-btn">
-          <span>❤️</span> <span>10</span>
-         </div>
-         <div className="bookmark-btn">
-           <span>🔖10</span>
-         </div>
-         <div className="share-btn">
-          <span>✈ Share</span>
-         </div>
-        </div>
-      </div>
-      <div className="side-bar">
-        <h2>This is Side bar</h2>
-      </div>
-
-    </div>
-  )
-}
-
-// SMALL COMPONENTS
-const Post=(props)=>{
-  const { post, classPost, onClick, history } = props;
-  return(
-    <div className={classPost}>
-      <img className="post-image" src={`https://robohash.org/${uuidv1()}`} alt="wallpaper"/>
-      <div className="post-intro">
-        <h2 className="subtitle" onClick={onClick}>{post.title}</h2>
-        {
-          //classPost !== "medium-post" && <p onClick={onClick}>{post.body}</p>
-        }
-        <p className="post-body" onClick={onClick}>{post.body}</p>
-        <div>
-          <AuthorCase />
-        </div>
-      </div>
-    </div>
-  )
-}
-const PostWithRouter= withRouter((props) => (
-  <Post {...props} onClick={ () => props.history.push('/signup') }/>
-))
 const SignInButton = withRouter(({ history }) =>(
   <button
     className="signin-btn"
-    onClick={authWithFireBase}
+    onClick={() => {history.push('/signin') }}
   >
     Sign In
   </button>
@@ -145,12 +35,12 @@ const SignInButton = withRouter(({ history }) =>(
 const SignUpButton = withRouter( (props) =>(
   <button
     className="signup-btn"
-    onClick={() => { console.log(props); props.history.push('/signup') }}
+    onClick={() => {props.history.push('/signup') }}
   >
     Sign Up
   </button>
 ));
-const SignOutButton = withRouter(({ history, signOut }) =>(
+const SignOutButton = withRouter(({ signOut }) =>(
   <button
     className="signout-btn"
     onClick={signOut}
@@ -158,9 +48,9 @@ const SignOutButton = withRouter(({ history, signOut }) =>(
     Sign Out
   </button>
 ));
-//
 
-const Header = ({ username }) => {
+// MOluCULES
+const Header = ({ signOut }) => {
   return(
     <div className="header">
       <div className="header-bar">
@@ -169,7 +59,7 @@ const Header = ({ username }) => {
           Blog
         </h1>
         <RenderProps />
-        <NavItem username={username}/>
+        <NavItem signOut={signOut}/>
       </div>
       {/*some error here, please delete /news/ to Debug*/}
       <div className="catelogy-bar">
@@ -182,8 +72,9 @@ const Header = ({ username }) => {
     </div>
   )
 }
-const NavItem = ({ username, signOut }) =>{
-  if(username !== "unknown"){
+const NavItem = ({ signOut }) =>{
+  let username = UserProfile.getName();
+  if(UserProfile.isAuthenticated()){
     return(
       <div className="signin-nav-item">
         <p>{username}</p>
@@ -196,32 +87,6 @@ const NavItem = ({ username, signOut }) =>{
       <SignInButton />
       <SignUpButton />
     </div>)
-}
-
-const PopularPostList=({ posts, catelogy })=>{
-          return(
-            posts && posts.map( (post, index) =>
-                                index < 2 &&
-                                <div className="popularPostsContainer" key={post.id}>
-                                  <h3>{catelogy}</h3>
-                                  <div>
-                                    <img src={`https://robohash.org/${post.title}`} alt=""/>
-                                    <Link
-                                      to={`/news/${catelogy}/${post.title}`}
-                                    >
-                                        {post.title}<br/>
-                                    </Link>
-                                  </div>
-                                </div>
-                                ))
-}
-const PostList=({ posts, catelogy })=>{
-          return(
-            posts && posts.map( post =>
-                                <div className="bottom-left-container-item" key={post.id}>
-                                  <PostWithRouter post={post} classPost="small-post" />
-                                </div>
-                                ))
 }
 
 const Footer = ({}) => (
@@ -245,51 +110,40 @@ class Home extends Component {
 	constructor(props){
 		super(props);
 		this.state={
-			posts: null
+			posts: posts,
+      username: ''
 		}
 	}
-	componentWillMount(){
+	componentDidMount(){
     // fetch some fake data
     // base.fetch('posts', {
     //   context: this,
-    //   asArray: true
     // }).then(data => {
     //   this.setState({posts: data})
-    //   console.log(this.state);
     // }).catch(error => {
-    //   //handle error
     //   console.log(error);
     // })
-    // console.log(base);
-		fetch('https://jsonplaceholder.typicode.com/posts')
-			.then(res=> res.json())
-			.then( posts => this.setState({ posts }))
-			.catch(err=>console.log('error'))
 	}
   handleSignOut=()=>{
-    this.props.signOut();
-  }
-  handleSignIn=()=>{
-    console.log('sign in');
-  }
-  handleSignUp=()=>{
-    console.log('sign up');
+    UserProfile.signOut();
+    this.setState({ state: this.state});
   }
   render() {
   		const { posts } = this.state;
-      const { match, username, isSignedIn } = this.props;
+      const { match } = this.props;
   		return(
-      <div>
         <div className="home">
-          <Header username={username} />
+          <Header signOut={this.handleSignOut}/>
           <Route path='/news' exact render={()=><Redirect to="/news/1" />} />
           <Route path='/' exact render={()=><Redirect to="/news/1" />} />
           {
           /* Render THe Page For Each Catelogy*/
-            posts && <Route exact path="/news/:catelogy"
+            posts && posts.length &&  <Route exact path="/news/:catelogy"
               render={  ({ match })=>
                   <CatelogyPage
-                    posts={posts.filter(post=>post.userId ==   match.params.catelogy)}
+                    posts={ posts
+                      // posts.filter(post=>post.userId ==   match.params.catelogy)
+                    }
                     catelogy={match.params.catelogy}
                   />
                 }
@@ -301,7 +155,7 @@ class Home extends Component {
           (
             <Route path={`/news/:catelogy/:title`}
               render={({ match })=>
-                    <PostContent
+                    <PostPage
                       post={posts.find(post=>post.title === match.params.title)}
                     />
               }
@@ -310,7 +164,6 @@ class Home extends Component {
         }
         <Footer />
         </div>
-      </div>
     );}
 }
 class RenderProps extends React.Component {
@@ -326,31 +179,6 @@ class RenderProps extends React.Component {
         }}
       />
     );
-  }
-}
-const Author = (props) =>{
-  return(
-    <div className={"author-info "+ props.className}>
-      <div>
-        <img src="" alt="author avatar"/>
-        <strong>Author name</strong>
-        <button>
-          Follow
-        </button>
-      </div>
-    </div>
-  )
-}
-class AuthorCase extends React.Component {
-  render() {
-    return(
-      <div >
-        <span className="hover-state">
-          Dinh
-          <Author />
-        </span>
-      </div>
-    )
   }
 }
 class HoverState extends React.Component {

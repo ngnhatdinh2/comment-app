@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Redirect, withRouter } from 'react-router-dom';
+import UserProfile from '../UserProfile/UserProfile';
 import './style.css';
 
 class SignIn extends Component {
@@ -10,7 +11,10 @@ class SignIn extends Component {
 			password: '',
 		};
 	}
-	signIn=(e)=>{
+	renderHomePageAfterSignIn=()=>
+			<Redirect to="/home" />
+
+	signIn=({history}) =>{
 		const isSuccessful = this.props.authenticate(this.state.username, this.state.password);
 		if(!isSuccessful){
 			alert('Wrong Password or Username');
@@ -19,17 +23,17 @@ class SignIn extends Component {
 				password: '',
 			});
 		}
-		e.preventDefault();
+		else{
+			UserProfile.signIn();
+			UserProfile.setName(this.state.username);
+			this.props.history.push('/news');
+		}
 	}
 	handleChange = input => e =>{
 		const value = e.target.value;
 		this.setState({[input]: value});
 	}
 	render(){
-		const { isSignedIn, refTo } = this.props;
-		if ( isSignedIn ){ 
-			return (<Redirect to = {refTo} />);
-		}
 		return(
 			<div id="signin">
 				<div id="left">
@@ -38,23 +42,23 @@ class SignIn extends Component {
 						<form id="signin-form">
 							<div>
 								<label>Username </label>
-								<input 
-									type="text" 
-									name="username" 
+								<input
+									type="text"
+									name="username"
 									value={this.state.username}
 									onChange={this.handleChange('username')}
 								/>
 							<div>
 							</div>
 								<label>Password </label>
-								<input 
-									type="password" 
+								<input
+									type="password"
 									value={this.state.password}
-									onChange={this.handleChange('password')} 
+									onChange={this.handleChange('password')}
 								/>
 							</div>
-							<button type="submit"
-								className="primary-btn" 
+							<button
+								className="primary-btn"
 								onClick={this.signIn}
 							>
 								Sign In
@@ -79,4 +83,4 @@ class SignIn extends Component {
 		)
 	}
 }
-export default SignIn;
+export default withRouter(SignIn);

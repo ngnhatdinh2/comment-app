@@ -1,21 +1,16 @@
 import React from 'react';
 //import TextField from '@material-ui/core/TextField';
-
-const SuccessfulSignUp = ({ signIn, username}) =>{
+import { withRouter } from 'react-router-dom';
+const SuccessfulSignUp = ({ history }) =>{
 	return(
 		<div>
-			<h2>
-		            CONGRATS U HAVE SIGNED UP SUCCESSFULLY
-	      	</h2>
-	      	<h1>Wellcome to Hell </h1>
-
-          	 <button
-          	 	color="primary" 
-          	 	onClick={signIn}
-          	 >
-		          Home Page
-	        </button>
+			<h2>CONGRATS U HAVE SIGNED UP SUCCESSFULLY</h2>
+			<button
+				color="primary"
+				onClick={()=>history.push('/news')}>
+				Home Page
+			</button>
 		</div>
 	)
 }
-export default SuccessfulSignUp;
+export default withRouter(SuccessfulSignUp);
