@@ -50,27 +50,42 @@ const SignOutButton = withRouter(({ signOut }) =>(
 ));
 
 // MOluCULES
-const Header = ({ signOut }) => {
-  return(
-    <div className="header">
-      <div className="header-bar">
-        <Link to="/news"><img src="" alt="home logo"/></Link>
-        <h1 className="logo">
-          Blog
-        </h1>
-        <RenderProps />
-        <NavItem signOut={signOut}/>
+class Header extends Component {
+  constructor(){
+    super();
+    this.state={
+      currrentCate: 0
+    }
+  }
+  render(){
+    const { signOut, catelogy } = this.props;
+    return(
+      <div className="header">
+        <div className="header-bar">
+          <a to="/news"><img src="" alt="home logo"/></a>
+          <h1 id="logo">
+            Blog
+          </h1>
+          <RenderProps />
+          <NavItem signOut={signOut}/>
+        </div>
+        {/*some error here, please delete /news/ to Debug*/}
+        <div className="catelogy-bar">
+          {
+            catelogies.map((catelogy, index)=>{
+                let className = "catelogy-link ";
+                console.log('cate',this.props.catelogy);
+                if( index+1 == this.props.catelogy){
+                  className += "active-catelogy";
+                }
+                return (<a className={className} href={`/news/${index+1}`} key={index}>{catelogy}</a>)
+              }
+            )
+          }
+        </div>
       </div>
-      {/*some error here, please delete /news/ to Debug*/}
-      <div className="catelogy-bar">
-        {
-          catelogies.map((catelogy, index)=>
-              <Link to={`/news/${index+1}`} key={index}>{catelogy}</Link>
-          )
-        }
-      </div>
-    </div>
-  )
+    )
+  }
 }
 const NavItem = ({ signOut }) =>{
   let username = UserProfile.getName();
@@ -91,18 +106,18 @@ const NavItem = ({ signOut }) =>{
 
 const Footer = ({}) => (
   <div className="footer">
-    <div className="i1">
-      Built by 🕷️ With ❤
-    </div>
-    <div className="2">
-      2
-    </div>
-    <div className="3">
-      3
-    </div>
-    <div className="4">
-      4
-    </div>
+      <div className="i1">
+        Built by 🕷️ With ❤
+      </div>
+      <div className="2">
+        2
+      </div>
+      <div className="3">
+        3
+      </div>
+      <div className="4">
+        4
+      </div>
   </div>
 );
 
@@ -133,7 +148,14 @@ class Home extends Component {
       const { match } = this.props;
   		return(
         <div className="home">
-          <Header signOut={this.handleSignOut}/>
+          <Route exact path="/news/:catelogy"
+            render={  ({ match })=>
+                <Header
+                  signOut={this.handleSignOut}
+                  catelogy={match.params.catelogy}
+                />
+              }
+          />
           <Route path='/news' exact render={()=><Redirect to="/news/1" />} />
           <Route path='/' exact render={()=><Redirect to="/news/1" />} />
           {
@@ -183,7 +205,7 @@ class RenderProps extends React.Component {
 }
 class HoverState extends React.Component {
   state = { isHover: false };
-
+          
   handleHover = isHover => () => {
     this.setState({ isHover });
   };

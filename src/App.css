@@ -1,3 +1,12 @@
 body{
 	margin: 0;
+	background-color: rgba(0,0,0,0.9);
+	color: orange;
 }
+::selection {
+  background: #c3c3c3; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #c3c3c3; /* Gecko Browsers */
+}
+

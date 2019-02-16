@@ -1,5 +1,32 @@
-.nav-bar{
-	display: flex;
-	justify-content: center;
-	background-color: lightgrey;
+h2{
+	text-align: center;
+}
+#signup-form{
+	text-align: right;
+	padding: 1rem;
+
+}
+#signup-form > div{
+	margin-top: 1rem;
+}
+.centerize{
+	display: table;
+	margin: 0 auto;
+}
+
+input, option, select{
+	margin-left: 1rem;
+	background: none;
+	border: 1px solid white;
+	border-radius: 3px;
+	padding: 0.5rem 0.3rem;
+	color: orange
+}
+button{
+	border: none;
+	background-color: orange;
+	border-radius: 3px;
+	font-size: 1.2rem;
+	margin-top: 1rem;
+	width: 50%
 }

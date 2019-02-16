@@ -38,7 +38,7 @@ class SignIn extends Component {
 			<div id="signin">
 				<div id="left">
 					<div className="signin-content">
-						<img src="http://robobrain.me/images/logo.svg" alt="logo" />
+						<img src="https://static.thenounproject.com/png/43388-200.png" alt="logo" />
 						<form id="signin-form">
 							<div>
 								<label>Username </label>
