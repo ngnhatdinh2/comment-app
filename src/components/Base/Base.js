@@ -13,7 +13,13 @@ var firebaseApp  = firebase.initializeApp({
 
 const db = firebase.database(firebaseApp);
 const base = Rebase.createClass(db);
-export const provider = new firebase.auth.GoogleAuthProvider();
-
+const google = new firebase.auth.GoogleAuthProvider();
+const facebook = new firebase.auth.FacebookAuthProvider();
+const github = new firebase.auth.GithubAuthProvider();
+export {
+  google,
+  facebook,
+  github
+}
 export const auth = firebaseApp.auth();
 export default base;

@@ -1,125 +1,98 @@
 import React, { Component } from 'react';
-import { Route, Link, Redirect, withRouter } from 'react-router-dom';
-import {provider, auth}  from '../Base/Base';
-import uuidv1 from 'uuid/v1';
-import base from '../Base/Base';
+import { Route, Link, Redirect, withRouter, BrowserRouter } from 'react-router-dom';
 import './Home.css';
 import posts from '../Test/posts.js';
-import UserProfile from '../UserProfile/UserProfile';
-import CatelogyPage from './CatelogyPage';
-import PostPage from './PostPage';
+import CatelogyPage from '../CatelogyPage/CatelogyPage';
+import PostPage from '../PostPage/PostPage';
+// testing components
+import SignIn from '../SignIn/SignIn';  
+import SignUp from '../SignUp/SignUp';  
+
+import DefaultProvider from '../DefaultProvider/DefaultProvider';
+import { Consumer } from '../DefaultProvider/DefaultProvider';
 // MUST READ
 // routes are defined here: /news   Posts: De cu, gon nhieu catelogy
 // news/1 tro di Posts: ung voi moi catelogy
 
-// TEMPORARY
-const authWithFireBase=(props)=>{
-    auth.signInWithPopup(provider).then(function(result) {
-  // This gives you a Google Access Token. You can use it to access the Google API.
-      UserProfile.setUsername(result.user.providerData[0].displayName);
-      this.setState({state: this.state});
-    }).catch(function(error) {
-      console.log('auth error', error);
-  });
-  }
-const catelogies=['history','politics','sport','culture','tech','health'];
-
-const SignInButton = withRouter(({ history }) =>(
-  <button
-    className="signin-btn"
-    onClick={() => {history.push('/signin') }}
-  >
-    Sign In
-  </button>
-));
-const SignUpButton = withRouter( (props) =>(
-  <button
-    className="signup-btn"
-    onClick={() => {props.history.push('/signup') }}
-  >
-    Sign Up
-  </button>
-));
-const SignOutButton = withRouter(({ signOut }) =>(
-  <button
-    className="signout-btn"
-    onClick={signOut}
-  >
-    Sign Out
-  </button>
-));
 
 // MOluCULES
-class Header extends Component {
-  constructor(){
-    super();
-    this.state={
-      currrentCate: 0
-    }
-  }
-  render(){
-    const { signOut, catelogy } = this.props;
-    return(
-      <div className="header">
-        <div className="header-bar">
-          <a to="/news"><img src="" alt="home logo"/></a>
-          <h1 id="logo">
-            Blog
-          </h1>
-          <RenderProps />
-          <NavItem signOut={signOut}/>
-        </div>
-        {/*some error here, please delete /news/ to Debug*/}
-        <div className="catelogy-bar">
-          {
-            catelogies.map((catelogy, index)=>{
-                let className = "catelogy-link ";
-                console.log('cate',this.props.catelogy);
-                if( index+1 == this.props.catelogy){
-                  className += "active-catelogy";
-                }
-                return (<a className={className} href={`/news/${index+1}`} key={index}>{catelogy}</a>)
-              }
-            )
-          }
-        </div>
-      </div>
-    )
-  }
-}
-const NavItem = ({ signOut }) =>{
-  let username = UserProfile.getName();
-  if(UserProfile.isAuthenticated()){
-    return(
-      <div className="signin-nav-item">
-        <p>{username}</p>
-        <SignOutButton signOut={signOut}/>
-      </div>
-    )
-  }
-  return(
-    <div className="signin-nav-item">
-      <SignInButton />
-      <SignUpButton />
-    </div>)
-}
+// class Header extends Component {
+//   constructor(){
+//     super();
+//     this.state={
+//       currrentCate: 0
+//     }
+//   }
+//   render(){
+//     return(
+//       <div className="header">
+//         <div className="header-bar">
+//           <a to="/news"><img src="" alt="home logo"/></a>
+//           <h1 id="logo">
+//             Blog
+//           </h1>
+//           <RenderProps />
+//           <NavItem />
+//         </div>
+//         {/*some error here, please delete /news/ to Debug*/}
+//         <div className="catelogy-bar">
+//           {
+//             catelogies.map((catelogy, index)=>{
+//                 let className = "catelogy-link ";
+//                 console.log('cate',this.props.catelogy);
+//                 if( index+1 == this.props.catelogy){
+//                   className += "active-catelogy";
+//                 }
+//                 return (<a className={className} href={`/news/${index+1}`} key={index}>{catelogy}</a>)
+//               }
+//             )
+//           }
+//         </div>
+//       </div>
+//     )
+//   }
+// }
+// const NavItem = (props) =>{
+//     const handleSignOut = (context, history) => {
+//       auth.logout();
+//       context.destroySession();
+//       history.push('/signedOut'); 
+//     };
+//     return(
+//       <Consumer>
+//         {
+//           withRouter(({ state, history, ...context })=>
+//               state.currentUser ? 
+//               <div className="signin-nav-item">
+//                 <p>{'username'}</p>
+//                 <SignOutButton signOut={()=>handleSignOut(context, history)} />
+//               </div> :
+//               <div className="signin-nav-item">
+//                 <SignInButton />
+//                 <SignUpButton />
+//               </div>)
+          
+//         }
+//       </Consumer>
+//     )
+// }
 
-const Footer = ({}) => (
-  <div className="footer">
-      <div className="i1">
-        Built by 🕷️ With ❤
-      </div>
-      <div className="2">
-        2
-      </div>
-      <div className="3">
-        3
-      </div>
-      <div className="4">
-        4
-      </div>
-  </div>
-);
+// const Footer = ({}) => (
+//   <div className="footer">
+//       <div className="i1">
+//         Built by 🕷️ With ❤
+//       </div>
+//       <div className="2">
+//         2
+//       </div>
+//       <div className="3">
+//         3
+//       </div>
+//       <div className="4">
+//         4
+//       </div>
+//   </div>
+// );
 
 class Home extends Component {
 	constructor(props){
@@ -130,34 +103,44 @@ class Home extends Component {
 		}
 	}
 	componentDidMount(){
-    // fetch some fake data
-    // base.fetch('posts', {
-    //   context: this,
-    // }).then(data => {
-    //   this.setState({posts: data})
-    // }).catch(error => {
-    //   console.log(error);
-    // })
 	}
-  handleSignOut=()=>{
-    UserProfile.signOut();
-    this.setState({ state: this.state});
-  }
   render() {
   		const { posts } = this.state;
       const { match } = this.props;
   		return(
-        <div className="home">
-          <Route exact path="/news/:catelogy"
+        <div id="main-app">
+        <BrowserRouter>
+        <DefaultProvider>
+          {/* <Route exact path="/news/:catelogy"
             render={  ({ match })=>
-                <Header
-                  signOut={this.handleSignOut}
+                <Header 
                   catelogy={match.params.catelogy}
                 />
               }
-          />
+          /> */}
+          <Route exact path='/signin' render={()=><SignIn />} />
+          <Route exact path="/signup" component={() => <SignUp />} />
           <Route path='/news' exact render={()=><Redirect to="/news/1" />} />
           <Route path='/' exact render={()=><Redirect to="/news/1" />} />
+          <Route exact path="/dashboard" 
+            render={ () => 
+              <Consumer>
+                {
+                  ({ state }) => state.currentUser ?
+                    <h1 className="content">Protected dashboard! <a href="/">home</a></h1> :
+                    <div className="content">
+                      <h1>Access denied.</h1>
+                      <p>You are not authorized to access this page.</p>
+                      <a href="/">home</a>
+                    </div>
+                }
+              </Consumer>}
+          />
+          <Route exact path="/signedOut" component={() => 
+              <h1 className="content">You're now signed out. <a href="/">home</a></h1>} />
+          <Route exact path="/accountCreated" component={() => 
+            <h1 className="content">Account created. <Link to="/signin">
+            Proceed to Dashboard</Link></h1>} />
           {
           /* Render THe Page For Each Catelogy*/
             posts && posts.length &&  <Route exact path="/news/:catelogy"
@@ -171,20 +154,22 @@ class Home extends Component {
                 }
             />
           }
-        {
-          //render the current clicked post
-          posts &&
-          (
-            <Route path={`/news/:catelogy/:title`}
-              render={({ match })=>
-                    <PostPage
-                      post={posts.find(post=>post.title === match.params.title)}
-                    />
-              }
-            />
-          )
-        }
-        <Footer />
+          {
+            //render the current clicked post
+            posts &&
+            (
+              <Route path={`/news/:catelogy/:title`}
+                render={({ match })=>
+                      <PostPage
+                        post={posts.find(post=>post.title === match.params.title)}
+                      />
+                }
+              />
+            )
+          }
+        {/* <Footer /> */}
+        </DefaultProvider>
+        </BrowserRouter>
         </div>
     );}
 }

@@ -5,9 +5,13 @@ import SuccessfulSignUp from './SuccessSignUp.js';
 import base from '../Base/Base';
 import uuidv1 from 'uuid/v1';
 import {BrowserRouter as Router, Redirect, withRouter } from 'react-router-dom';
-import UserProfile from '../UserProfile/UserProfile'
+import UserProfile from '../UserProfile/UserProfile';
+// new sign up form
+import { Consumer } from '../DefaultProvider/DefaultProvider';
+import Form from '../Form/Form';
+import { auth } from '../Base/index';
 import './style.css';
-class SignUp extends Component {
+class SignUpp extends Component {
 	componentWillMount(){
 	}
 	constructor(props){
@@ -216,4 +220,18 @@ class SignUp extends Component {
 		return(renderRoute)
 	}
 }
+const SignUp = props => <Consumer>
+  {({ state, ...context }) => (
+    <Form
+      action="createUser"
+      title="Create account"
+      onSuccess={() => auth.logout().then(() => {
+        context.destroySession();
+        context.clearMessage();
+        props.history.push('/accountCreated');
+      })}
+      onError={({ message }) => context.setMessage(`Error occured: ${message}`)}
+    />
+  )}
+</Consumer>;
 export default withRouter(SignUp);
