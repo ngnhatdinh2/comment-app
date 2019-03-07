@@ -25,7 +25,7 @@ class SlideShowGallery extends React.Component{
             if(index >= this.state.curSlide && index < this.state.curSlide + 3){
               className += " visible";
             }
-            return (<div className={className}>
+            return (<div className={className} key={uuidv1()}>
               <span className="numbertext">{index+1} / {this.props.posts.length}</span>
               <img className="slide-image" src={post.imgUrl} alt="wallpaper"/>
               <h2 className="slide-subtitle">{post.title}</h2>
@@ -34,8 +34,8 @@ class SlideShowGallery extends React.Component{
         }
 
         </div>
-        <div class="prev" onClick={()=>this.nextSlide(-1)}>&#10094;</div>
-        <div class="next" onClick={()=>this.nextSlide(1)}>&#10095;</div>
+        <div className="prev" onClick={()=>this.nextSlide(-1)}>&#10094;</div>
+        <div className="next" onClick={()=>this.nextSlide(1)}>&#10095;</div>
       </div>
     );
   }

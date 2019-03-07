@@ -1,0 +1,123 @@
+.header{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    grid-area: h;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid orange;
+}
+.footer{
+    grid-area: f;
+    background-color: black;
+    display: flex;
+    align-items: flex-start;
+    height: 100px;
+    padding: 1rem;
+    color: orange;
+    border-top: 1px solid orange;
+}
+
+.signin-nav-item{
+	display: flex;
+	align-items: center;
+}
+
+.signout-btn{
+	all: unset;
+	background-color: orange;
+	border: 1px solid orange;
+	color: white;
+	padding: 0.8rem;
+	border-radius: 2px;
+	transition: 0.5s;
+	cursor: pointer;
+}
+.signout-btn:hover{
+	background-color: white;
+	color: orange;
+	transition: 0.5s;
+}
+.signin-btn{
+	all: unset;
+	color: black;
+	padding: 0.5rem 0.8rem;
+	border-radius: 2px;
+	transition: 0.5s;
+	cursor: pointer;
+}
+.signin-btn:hover{
+	background-color: white;
+	color: orange;
+	transition: 0.5s;
+}
+.signup-btn{
+	all: unset;
+	background-color: black;
+	border: 1px solid black;
+	color: orange;
+	padding: 0.8rem;
+	border-radius: 2px;
+	transition: 0.5s;
+	cursor: pointer;
+}
+.signup-btn:hover, .signin-btn:hover{
+	background-color: orange;
+	color: white;
+	transition: 0.5s;
+}
+
+#logo{
+	flex: 5;
+	align-items: flex-start;
+	text-align: center;
+	letter-spacing: 5px;
+	font-weight: 400;
+	cursor: default;
+	color: black;
+	font-size: 2rem;
+	margin: 1rem;
+	color: #fff;
+  font-family: Pacifico;
+}
+
+@keyframes neon3 {
+  from {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #FFDD1B, 0 0 70px #FFDD1B, 0 0 80px #FFDD1B, 0 0 100px #FFDD1B, 0 0 150px #FFDD1B;
+  }
+  to {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #FFDD1B, 0 0 35px #FFDD1B, 0 0 40px #FFDD1B, 0 0 50px #FFDD1B, 0 0 75px #FFDD1B;
+  }
+}
+
+.header-bar{
+	display: flex;
+	background-color: orange;
+}
+.catelogy-bar{
+	display: flex;
+	justify-content: space-around;
+	align-items: flex-start;
+	position: relative;
+	bottom: 0;
+	background-color: rgba(0,0,0,0.9);
+}
+.catelogy-link{
+	text-decoration: none;
+	color: #FFDD1B	;
+	text-transform: uppercase;
+	letter-spacing: 1.5px;
+	border-radius: -10px;
+	cursor: pointer;
+	padding: 0.5rem 1rem;
+	font-family: Audiowide;
+}
+.active-catelogy{
+	background-color: orange;
+	color: black;
+}
+.catelogy-link:hover{
+	color: #fff;
+	/* background-color: orange; */
+	animation: neon3 1.5s ease-in-out infinite alternate;
+}

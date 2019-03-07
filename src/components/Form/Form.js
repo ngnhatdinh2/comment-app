@@ -29,7 +29,7 @@ import React, {
     handleErrors(reason) {
       this.resetForm();
       this.props.onError && this.props.onError(reason);
-      console.log(reason);
+      alert(reason);
     }
   
     handleSubmit(event) {
@@ -40,7 +40,7 @@ import React, {
         props: { action }
       } = this;
       auth.userSession(
-        'signIn',
+        action,
         email.current.value,
         password.current.value
       ).then((res)=>{this.handleSuccess(res)}).catch(this.handleErrors);  

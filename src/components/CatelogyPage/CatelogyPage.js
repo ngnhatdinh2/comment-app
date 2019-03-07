@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import uuidv1 from 'uuid/v1';
 import { Route,  withRouter } from 'react-router-dom';
 import base from '../Base/Base';
-import { auth } from '../Base/index';
 import SlideShowGallery from '../Home/SlideShowGallery';
-import { Consumer } from '../DefaultProvider/DefaultProvider';
+import {Header, Footer} from '../CommonComps/CommonComps';
 import './CatelogyPage.css';
 
 class AuthorCase extends React.Component {
@@ -27,19 +27,18 @@ class AuthorCase extends React.Component {
 }
 const PostCard=({ post, onClick })=>{
   const  rand =  Math.floor(Math.random()*(3-1+1)+1);
-  console.log('rand', rand);
   let className = 'post ';
 
-  // if(rand <= 1){
-  //   className += 'small-postCard';
-  // }
-  // else if(rand <= 2 && rand > 1){
-  //   className += 'medium-postCard';
-  // }
-  // else{
-  //   className += 'big-postCard';
-  // }
-  
+  if(rand <= 1){
+    className += 'small-postCard';
+  }
+  else if(rand <= 2 && rand > 1){
+    className += 'medium-postCard';
+  }
+  else{
+    className += 'big-postCard';
+  }
+  const lorem = 'Adipisicing quis et aute magna cillum pariatur. Ea nisi duis aliquip sunt consequat id reprehenderit aliqua pariatur officia culpa duis occaecat reprehenderit. Exercitation do ipsum voluptate ex commodo esse Lorem amet et ipsum.'
   return(
     <div className={className} >
       <img className="post-image" src={post.imgUrl} alt="wallpaper"/>
@@ -47,10 +46,11 @@ const PostCard=({ post, onClick })=>{
       <div className="text-block">
         <h1 className="subtitle" onClick={onClick}>{post.title}</h1>
         <div className="post-body" onClick={onClick}>
-          <span>{post.title}</span>
-          <AuthorCase />
+          <p>{className.includes('big') ? lorem : post.title}</p>
+          
         </div>
       </div>
+      <AuthorCase />
     </div>
   )
 }
@@ -61,18 +61,7 @@ const PostWithRouter= withRouter((props) => (
 class PostList extends Component
 {
   render(){
-    // const  rand =  Math.floor(Math.random()*(3-1+1)+1);
-    // console.log('rand', rand);
     let className = '';
-    // if(rand <= 1){
-    //   className = 'small-postCard';
-    // }
-    // else if(rand <= 2 && rand > 1){
-    //   className = 'medium-postCard';
-    // }
-    // else{
-    //   className = 'big-postCard';
-    // }
     const { posts } = this.props;
     return(
       <div className='post-list'>
@@ -81,7 +70,7 @@ class PostList extends Component
         posts.map( post =>
                           <PostWithRouter 
                             post={post} 
-                            key={post.id} 
+                            key={uuidv1()} 
                             classPost={className}
                           />)
       }
@@ -89,32 +78,7 @@ class PostList extends Component
     )                    
     }
 }
-const catelogies=['history','politics','sport','culture','tech','health'];
 
-const SignInButton = withRouter(({ history }) =>(
-  <button
-    className="signin-btn"
-    onClick={() => { history.push('/signin')}}
-  >
-    Sign In
-  </button>
-));
-const SignUpButton = withRouter( (props) =>(
-  <button
-    className="signup-btn"
-    onClick={() => {props.history.push('/signup') }}
-  >
-    Sign Up
-  </button>
-));
-const SignOutButton = withRouter(({ signOut }) =>(
-  <button
-    className="signout-btn"
-    onClick={signOut}
-  >
-    Sign Out
-  </button>
-));
 class CatelogyPage extends Component{
   constructor(props){
     super(props);
@@ -138,9 +102,7 @@ class CatelogyPage extends Component{
       <div className="home">
         <Route exact path="/news/:catelogy"
             render={  ({ match })=>
-                <Header 
-                  catelogy={match.params.catelogy}
-                />
+                <Header catelogy={match.params.catelogy} />
               }
           />
         <div className="top-page">
@@ -159,80 +121,6 @@ class CatelogyPage extends Component{
   }
   
 }
-const Footer = ({}) => (
-  <div className="footer">
-      <div className="i1">
-        Built by 🕷️ With ❤
-      </div>
-      <div className="2">
-        2
-      </div>
-      <div className="3">
-        3
-      </div>
-      <div className="4">
-        4
-      </div>
-  </div>
-);
-class Header extends Component {
-  constructor(){
-    super();
-    this.state={
-      currrentCate: 0
-    }
-  }
-  render(){
-    return(
-      <div className="header">
-        <div className="header-bar">
-          <a to="/news"><img src="" alt="home logo"/></a>
-          <h1 id="logo">
-            Blog
-          </h1>
-          {/* <RenderProps /> */}
-          <NavItem />
-        </div>
-        {/*some error here, please delete /news/ to Debug*/}
-        <div className="catelogy-bar">
-          {
-            catelogies.map((catelogy, index)=>{
-                let className = "catelogy-link ";
-                console.log('cate',this.props.catelogy);
-                if( index+1 == this.props.catelogy){
-                  className += "active-catelogy";
-                }
-                return (<a className={className} href={`/news/${index+1}`} key={index}>{catelogy}</a>)
-              }
-            )
-          }
-        </div>
-      </div>
-    )
-  }
-}
-const NavItem = (props) =>{
-    const handleSignOut = (context, history) => {
-      auth.logout();
-      context.destroySession();
-      history.push('/signedOut'); 
-    };
-    return(
-      <Consumer>
-        {
-          withRouter(({ state, history, ...context })=>
-              state.currentUser ? 
-              <div className="signin-nav-item">
-                <p>{'username'}</p>
-                <SignOutButton signOut={()=>handleSignOut(context, history)} />
-              </div> :
-              <div className="signin-nav-item">
-                <SignInButton />
-                <SignUpButton />
-              </div>)
-          
-        }
-      </Consumer>
-    )
-}
-export default CatelogyPage;
+
+export  { CatelogyPage as default };
+

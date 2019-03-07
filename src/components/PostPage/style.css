@@ -1,0 +1,94 @@
+#post-page{
+    /* margin: 0 10vw; */
+}
+#home-icon{
+    margin-top: 1rem;
+    color: white;
+    font-size: 3rem;
+}
+.main-post{
+	margin: 0 10vw;
+	flex: 7.5;
+	/* position: relative; */
+	border: 1px solid black;
+	display: flex;
+	flex-direction: column;
+
+	border-radius: 10px 0px 5px orange;
+}
+.post-content{
+	margin-top: 2rem;
+	padding: 0 5rem;
+	font-size: 1.2rem;
+	letter-spacing: 0.5px;
+	line-height: 2rem;
+	font-weight: 350;
+}
+.post-title{
+	text-transform: uppercase;
+	font-weight: 420;
+    letter-spacing: 1px;
+    height: auto;
+}
+.post-info{
+	display: flex;
+	cursor: default;
+}
+.post-info img{
+	background-color: blue;
+	border-radius: 3px;
+	width: 20px;
+	height: 20px;
+	align-self: center;
+	margin-right: 0.2rem;
+	border-radius: 5px;
+}
+.post-info .author{
+	margin-right: 1rem;
+}
+.post-info .date{
+	font-size: 0.9rem;
+}
+.post-body{
+    height: 100;
+}
+.main-post .post-tag{
+	display: flex;
+}
+.post-tag div{
+	background-color: tomato;
+	font-size: 0.9rem;
+	margin-right: 1rem;
+	border-radius: 5px;
+	padding: 0 0.5rem;
+	cursor: pointer;
+}
+.side-bar{
+	position: sticky;
+	position: -webkit-sticky;
+	top: 2rem;
+	background-color: rgba(0,0,0,0.9);
+	flex: 2.5;
+	align-self: flex-start;
+}
+.scroll-bar{
+	position: sticky;
+	bottom: 0px;
+	border-top: 1px solid rgba(0,0,0,0.9);
+	background-color: white;
+	padding: 0.5rem 1rem;
+	display: flex;
+	justify-content: space-around;
+}
+.scroll-bar > div {
+	padding: 0.2rem 1rem;
+	font-size: 1.2rem;
+	border: 1.2px solid rgba(0,0,0,0.9);
+	cursor: pointer;
+	border-radius: 2px;
+}
+.scroll-bar > div:hover{
+	color: orange;
+	border: 1.2px solid orange;
+}
+/* end of post page */

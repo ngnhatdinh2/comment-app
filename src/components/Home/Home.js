@@ -1,98 +1,13 @@
 import React, { Component } from 'react';
-import { Route, Link, Redirect, withRouter, BrowserRouter } from 'react-router-dom';
+import { Route, Link, Redirect, BrowserRouter } from 'react-router-dom';
 import './Home.css';
 import posts from '../Test/posts.js';
 import CatelogyPage from '../CatelogyPage/CatelogyPage';
 import PostPage from '../PostPage/PostPage';
-// testing components
 import SignIn from '../SignIn/SignIn';  
 import SignUp from '../SignUp/SignUp';  
-
 import DefaultProvider from '../DefaultProvider/DefaultProvider';
 import { Consumer } from '../DefaultProvider/DefaultProvider';
-// MUST READ
-// routes are defined here: /news   Posts: De cu, gon nhieu catelogy
-// news/1 tro di Posts: ung voi moi catelogy
-
-
-// MOluCULES
-// class Header extends Component {
-//   constructor(){
-//     super();
-//     this.state={
-//       currrentCate: 0
-//     }
-//   }
-//   render(){
-//     return(
-//       <div className="header">
-//         <div className="header-bar">
-//           <a to="/news"><img src="" alt="home logo"/></a>
-//           <h1 id="logo">
-//             Blog
-//           </h1>
-//           <RenderProps />
-//           <NavItem />
-//         </div>
-//         {/*some error here, please delete /news/ to Debug*/}
-//         <div className="catelogy-bar">
-//           {
-//             catelogies.map((catelogy, index)=>{
-//                 let className = "catelogy-link ";
-//                 console.log('cate',this.props.catelogy);
-//                 if( index+1 == this.props.catelogy){
-//                   className += "active-catelogy";
-//                 }
-//                 return (<a className={className} href={`/news/${index+1}`} key={index}>{catelogy}</a>)
-//               }
-//             )
-//           }
-//         </div>
-//       </div>
-//     )
-//   }
-// }
-// const NavItem = (props) =>{
-//     const handleSignOut = (context, history) => {
-//       auth.logout();
-//       context.destroySession();
-//       history.push('/signedOut'); 
-//     };
-//     return(
-//       <Consumer>
-//         {
-//           withRouter(({ state, history, ...context })=>
-//               state.currentUser ? 
-//               <div className="signin-nav-item">
-//                 <p>{'username'}</p>
-//                 <SignOutButton signOut={()=>handleSignOut(context, history)} />
-//               </div> :
-//               <div className="signin-nav-item">
-//                 <SignInButton />
-//                 <SignUpButton />
-//               </div>)
-          
-//         }
-//       </Consumer>
-//     )
-// }
-
-// const Footer = ({}) => (
-//   <div className="footer">
-//       <div className="i1">
-//         Built by 🕷️ With ❤
-//       </div>
-//       <div className="2">
-//         2
-//       </div>
-//       <div className="3">
-//         3
-//       </div>
-//       <div className="4">
-//         4
-//       </div>
-//   </div>
-// );
 
 class Home extends Component {
 	constructor(props){
@@ -106,18 +21,10 @@ class Home extends Component {
 	}
   render() {
   		const { posts } = this.state;
-      const { match } = this.props;
   		return(
         <div id="main-app">
         <BrowserRouter>
         <DefaultProvider>
-          {/* <Route exact path="/news/:catelogy"
-            render={  ({ match })=>
-                <Header 
-                  catelogy={match.params.catelogy}
-                />
-              }
-          /> */}
           <Route exact path='/signin' render={()=><SignIn />} />
           <Route exact path="/signup" component={() => <SignUp />} />
           <Route path='/news' exact render={()=><Redirect to="/news/1" />} />
@@ -140,7 +47,7 @@ class Home extends Component {
               <h1 className="content">You're now signed out. <a href="/">home</a></h1>} />
           <Route exact path="/accountCreated" component={() => 
             <h1 className="content">Account created. <Link to="/signin">
-            Proceed to Dashboard</Link></h1>} />
+            Sign In Here</Link></h1>} />
           {
           /* Render THe Page For Each Catelogy*/
             posts && posts.length &&  <Route exact path="/news/:catelogy"

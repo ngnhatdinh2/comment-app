@@ -1,5 +1,6 @@
 .gallery{
   position: relative;
+  height: 50%;
 }
 .slide-container{
   padding: 10px 0;
